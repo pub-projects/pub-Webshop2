@@ -1,0 +1,16 @@
+/* Container for the whole site */
+.siteWrapper {
+  min-height: 100vh;
+  top: 0px;
+  left: 0px;
+}
+.siteContent {
+  position: relative; /*important to footer placement*/
+  padding-bottom: 60px; /*important to footer placement*/
+  top: 0px;
+  left: 0px;
+  padding-left: 1em;
+  padding-right: 1em;
+  min-height: 100vh;
+  overflow-y: auto;
+}
