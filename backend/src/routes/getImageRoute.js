@@ -8,9 +8,6 @@ export const getImageRoute = {
         const { image } = req.params;
         console.log("getImageRoute-image:", image);
 
-        // Checks if the image parameter is old type or not. Old type has an = sign.
-        // const img = image.match('=') !== null ? image.split('=')[1] : image;
-
         try {
             res.sendFile(path.join(__dirname, localPath, image));
         } catch (err) {
