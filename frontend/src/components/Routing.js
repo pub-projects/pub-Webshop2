@@ -8,5 +8,5 @@ export const Routing = () => {
                 <Route path="/" element={<Home />} />
             </Routes>
         </Router>
-    )
+    );
 }
