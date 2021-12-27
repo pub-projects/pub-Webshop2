@@ -17,7 +17,6 @@ export const ProductList = () => {
                             );
                         })
                     }
-                    <ProductItem />
                 </div>
             )}
         </ProductConsumer>

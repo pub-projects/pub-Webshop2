@@ -7,7 +7,9 @@ export const ProductItem = (item) => {
     const urlBase = "/api/images/";
 
     return !product ? (
-        <></>
+        <div className="productItemWrapper">
+            Cannot retrieve product from server.
+        </div>
     ) : (
         <div className="card mb-3" style={{ maxWidth: "540px", minWidth: "300px" }}>
             <div className="row g-0">
@@ -22,6 +24,6 @@ export const ProductItem = (item) => {
                     </div>
                 </div>
             </div>
-        </div >
+        </div>
     )
 }
