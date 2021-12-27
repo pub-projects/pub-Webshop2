@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react';
 import { ProductItem } from './ProductItem';
 import { ProductConsumer } from '../App';
 
