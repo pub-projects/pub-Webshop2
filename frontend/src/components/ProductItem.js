@@ -2,6 +2,7 @@ import { DisplayPrice } from './DisplayPrice';
 import { StarRating } from './StarRating';
 
 export const ProductItem = (item) => {
+    console.log("ProductItem item:", item);
     const product = item.product;
     const urlBase = "/api/images/";
     const productUrl = "/productpage/" + product._id;
