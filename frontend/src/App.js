@@ -4,7 +4,7 @@ import { SiteHeader } from "./components/SiteHeader";
 import { SiteFooter } from "./components/SiteFooter";
 import { Routing } from "./components/Routing";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './styles/index.css';
+import './styles/index.scss';
 
 const ProductData = React.createContext();
 export const ProductConsumer = ProductData.Consumer;
