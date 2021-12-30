@@ -1,14 +1,15 @@
-import { ProductConsumer } from "../App";
+import { SearchBar } from '../components/SearchBar';
+import { useParams } from 'react-router-dom';
 import { SearchList } from "../components/SearchList";
 
 export const SearchLandingPage = () => {
 
+    const { searchTerm } = useParams();
+    console.log("Landing:", searchTerm);
     return (
-        <ProductConsumer>
-            <div className="">
-                <SearchList />
-            </div>
-        </ProductConsumer>
-
+        <div className="">
+            <SearchBar />
+            <SearchList searchTerm={searchTerm} />
+        </div>
     );
 }

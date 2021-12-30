@@ -1,4 +1,5 @@
 import { ProductList } from '../components/ProductList';
+import { SearchBar } from '../components/SearchBar';
 
 export const Home = () => {
 
@@ -7,7 +8,7 @@ export const Home = () => {
 
     return (
         <div className="page-container">
-
+            <SearchBar />
             <ProductList />
         </div>
     );
