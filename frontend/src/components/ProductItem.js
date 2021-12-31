@@ -1,11 +1,14 @@
 import { DisplayPrice } from './DisplayPrice';
 import { StarRating } from './StarRating';
 
-export const ProductItem = (item) => {
-    console.log("ProductItem item:", item);
-    const product = item.product;
+export const ProductItem = (props) => {
+    const product = props.product;
     const urlBase = "/api/images/";
     const productUrl = "/productpage/" + product._id;
+
+    if (props.counter > -1) {
+        props.setCounter(props.counter + 1);
+    }
 
     return !product ? (
         <div className="productItemWrapper">
@@ -33,6 +36,5 @@ export const ProductItem = (item) => {
                 </div>
             </div>
         </div>
-
     )
 }

@@ -1,28 +1,30 @@
 import { ProductItem } from "./ProductItem";
-import { ProductConsumer } from '../App';
 
 export const SearchList = (props) => {
-    console.log("SearchTerm", props['searchTerm']);
+    console.log("SearchList:", props);
+
+    const products = props.productList;
+    const length = products.length;
+
     return (
-        <ProductConsumer>
-            {(products) => (
+        <>
+            {length > 1 || length === 0 ?
+                <div className="search-result">The search for "{props["searchTerm"]}" gave {length} results.</div>
+                : <div className="search-result">The search for "{props["searchTerm"]}" gave {length} result.</div>}
+            <div className="card-group">
 
-
-                < div className="card-group">{
-                    products.filter(product =>
-                        product.name.toLowerCase().includes(props['searchTerm'].toLowerCase())).map((item, key) => {
-                            return (
-                                <ProductItem key={key} product={item} />
-                            );
-                        })
+                {
+                    products.map((item, key) => {
+                        return (
+                            <ProductItem key={key} product={item} />
+                        );
+                    })
                 }
-                </div>
+            </div>
+        </>
 
-
-            )
-            }
-        </ProductConsumer >
     );
+
 }
 /*products.filter(product =>
                             product.name.toLowerCase() === searchTerm.value.toLowerCase()
