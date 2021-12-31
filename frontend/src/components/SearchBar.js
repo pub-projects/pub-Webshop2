@@ -7,7 +7,7 @@ export const SearchBar = () => {
     const navigate = useNavigate();
 
     const onClickHandler = () => {
-        console.log("bar:", searchWord);
+        console.log("search bar:", searchWord);
         navigate(`/search-page/${searchWord}`);
     }
 
