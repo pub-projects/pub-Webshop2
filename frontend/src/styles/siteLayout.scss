@@ -1,4 +1,7 @@
 /* Container for the whole site */
+body {
+  background-color: whitesmoke;
+}
 .siteWrapper {
   min-height: 100vh;
   top: 0px;
@@ -13,4 +16,11 @@
   padding-right: 1em;
   min-height: 100vh;
   overflow-y: auto;
+}
+
+@media (max-width: 600px) {
+  .container {
+    padding-left: 0.3em;
+    padding-right: 0.5em;
+  }
 }
