@@ -15,15 +15,15 @@ export const ProductItem = (props) => {
             Cannot retrieve product from server.
         </div>
     ) : (
-        <div className="card ms-2 me-2 shadow pt-2 pb-1 mb-4 rounded-3">
-            <div className="cardImageWrapper px-4">
+        <div className="card shadow ms-2 me-2 mb-4 pt-2">
+            <div className="cardImageWrapper px-4 py-2">
                 <div className="imageContainer">
                     <a href={productUrl}>
                         <img src={product.imgRef.match('=') ? urlBase + product.imgRef.split('=')[1] : product.imgRef} alt={product.name} className="card-img-top" />
                     </a>
                 </div>
             </div>
-            <div className="card-body px-2">
+            <div className="card-body px-2 pb-1">
                 <h5 className="card-title">
                     <a href={productUrl}>{product.name}
                     </a>
