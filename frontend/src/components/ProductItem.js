@@ -4,7 +4,7 @@ import { StarRating } from './StarRating';
 export const ProductItem = (props) => {
     const product = props.product;
     const urlBase = "/api/images/";
-    const productUrl = "/productpage/" + product._id;
+    const productUrl = "/product-page/" + product._id;
 
     if (props.counter > -1) {
         props.setCounter(props.counter + 1);

@@ -2,12 +2,12 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 export const SearchBar = () => {
-    console.log("search bar");
+    //console.log("search bar");
     const [searchWord, setSearchWord] = useState('');
     const navigate = useNavigate();
 
     const onClickHandler = () => {
-        console.log("search bar:", searchWord);
+        //console.log("search bar:", searchWord);
         navigate(`/search-page/${searchWord}`);
     }
 
