@@ -1,3 +1,5 @@
+import { useState } from 'react';
+import { Modal, Button } from 'react-bootstrap';
 import { ProductConsumer } from '../App';
 import { useParams } from 'react-router-dom';
 import { StarRating } from '../components/StarRating';
@@ -12,19 +14,35 @@ export const ProductPage = () => {
         console.log(isExpanded);
     }
 
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
     return (
         <ProductConsumer>{(products) => {
             //console.log("ProductPage:", products);
             const product = products.find(item => item._id === id);
             return (
-                <>{product ?
+                <>{product ? <>
+                    <Modal show={show} onHide={handleClose} className="modal-button">
+                        <Modal.Header closeButton style={{ lineHeight: "0.5em", fontSize: "0.5em", borderBottom: "0px" }}>
+                        </Modal.Header>
+                        <Modal.Body>
+                            <img src={product.imgRef.match('=') ? urlBase + product.imgRef.split('=')[1] : product.imgRef} className="img-fluid rounded-start" alt={product.name} />
+                        </Modal.Body>
+                    </Modal>
+
+
                     <div className="product-card mb-3">
                         <div className="row g-0">
                             <div className="image-container col-md-4">
-                                <img src={product.imgRef.match('=') ? urlBase + product.imgRef.split('=')[1] : product.imgRef} className="img-fluid rounded-start" alt={product.name} />
+                                <button className="modal-image-button" onClick={handleShow}>
+                                    <img src={product.imgRef.match('=') ? urlBase + product.imgRef.split('=')[1] : product.imgRef} className="img-fluid rounded-start" alt={product.name} />
+                                </button>
                             </div>
                             <div className="col-md-8">
-                                <div class="card-body">
+                                <div className="card-body">
                                     <h4 className="card-title">{product.name}</h4>
                                     <StarRating rating={product.rating ? product.rating : 0} />
                                     <hr />
@@ -69,7 +87,8 @@ export const ProductPage = () => {
                                 </div>
                             </div>
                         </div>
-                    </div> :
+                    </div>
+                </> :
                     <div className="card mb-3" style={{ maxWidth: "540px" }}>
                         No product data available.
                     </div>}</>

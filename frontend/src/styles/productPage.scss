@@ -11,10 +11,16 @@
 }
 
 .product-card .image-container{
-    height: auto;
-    max-width: 35%;
-    contain:content;
+    display:flex;
+    justify-content: center;
+    align-items:flex-start;
     padding: 1em;
+}
+
+.product-card .image-container img{
+    max-height: 12em;
+    width: clamp(4em, auto, 35%);
+    object-fit: cover;
 }
 
 .product-card .show-more-text{
@@ -24,4 +30,12 @@ font-size: calc(var(--bs-body-font-size) - 0.2em);
 
 .product-card .items-in-stock{
     margin-bottom: 2em;
+}
+
+.product-card .modal-image-button{
+    border-width: 0px;
+}
+
+.btn-close{
+    border: 0.8px solid #000;
 }
