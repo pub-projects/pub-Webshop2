@@ -22,12 +22,16 @@
   justify-content: center;
 }
 
-.card-title {
+.card .card-title {
   color: black;
   transition: color 250ms 10ms;
 }
-.card-title:hover {
+.card .card-title:hover {
   color: green;
+}
+
+.card .card-body{
+  background-color: aliceblue;
 }
 
 @media (max-width: 600px) {

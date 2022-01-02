@@ -1,0 +1,27 @@
+.product-card {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	min-width: 0;
+	word-wrap: break-word;
+	background-color: #fff;
+	background-clip: border-box;
+	border: 1px solid rgba(0,0,0,.125);
+	border-radius: .25rem;
+}
+
+.product-card .image-container{
+    height: auto;
+    max-width: 35%;
+    contain:content;
+    padding: 1em;
+}
+
+.product-card .show-more-text{
+text-decoration: none;
+font-size: calc(var(--bs-body-font-size) - 0.2em);
+}
+
+.product-card .items-in-stock{
+    margin-bottom: 2em;
+}
