@@ -37,5 +37,13 @@ font-size: calc(var(--bs-body-font-size) - 0.2em);
 }
 
 .btn-close{
+    outline:none;
     border: 0.8px solid #000;
+    box-shadow: 0px 0px 2px 0.5px rgb(255, 94, 0);
+}
+
+@media(max-width:600px){
+    .product-card .items-in-stock{
+        margin-bottom: 0px;
+    }
 }
