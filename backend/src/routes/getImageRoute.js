@@ -6,7 +6,7 @@ export const getImageRoute = {
     method: 'get',
     handler: async (req, res) => {
         const { image } = req.params;
-        console.log("getImageRoute-image:", image);
+        //console.log("getImageRoute-image:", image);
 
         try {
             res.sendFile(path.join(__dirname, localPath, image));

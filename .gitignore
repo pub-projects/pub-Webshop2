@@ -1,3 +1,5 @@
 /backend/.env
-/frontend/node_modules/
 /backend/node_modules/
+/backend/.flowconfig
+/frontend/node_modules/
+/frontend/.flowconfig
