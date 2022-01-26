@@ -10,6 +10,8 @@ export const ProductItem = (props) => {
         props.setCounter(props.counter + 1);
     }
 
+    const rating = { "rating": { "5": 1, "4": 3, "3": 3, "2": 6, "1": 2 } };
+
     return !product ? (
         <div className="productItemWrapper">
             Cannot retrieve product from server.
@@ -28,7 +30,7 @@ export const ProductItem = (props) => {
                     <a href={productUrl}>{product.name}
                     </a>
                 </h5>
-                <StarRating rating="2.5" />
+                <StarRating rating={rating.rating} />
                 <div className='itemPrice'>
                     <a href={productUrl}>
                         <DisplayPrice displayStyle="amazon" symbolPlacement="pre" symbol="$" price={product.price} />
