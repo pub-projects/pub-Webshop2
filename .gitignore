@@ -3,3 +3,4 @@
 /backend/.flowconfig
 /frontend/node_modules/
 /frontend/.flowconfig
+.DS_Store

@@ -1,43 +1,71 @@
 import { useState } from 'react';
+import { ProgressBar } from './ProgressBar';
 
+/*
+    Trying to use stars in the detailed view of StarRating didn't turn out good. 
+    Applying the percentage of each star level to only 5 elements makes eveything congregate towards the first star. 
+    Each full star represent 20% of all the stars and it makes it difficult to visualize.
+    Will use a rectangle, filled to the percentage of each star vote instead, as does amazon.com.
+*/
+// Props (star, votes, totalVotes)
+const RatingDetail = (props) => {
+    const rating = Math.round((props.votes / props.totalVotes) * 100);
+    const label = `${props.rating} out of ${props.totalVotes} gave this ${props.star + 1} stars.`;
+    const barPreText = `${props.star + 1} star `;
+    const barPostText = ` ${rating}%`;
+    return (
+        // <><div className="stars" style={style} aria-label={label}>{props.star + 1} : </div><div>{Math.round((props.votes / props.totalVotes) * 100)}%</div></>
+        <div className="star-rating">
+            <ProgressBar pre_text={barPreText} post_text={barPostText} percent={rating} color="gold" />
+            <span className="float-right"></span>
+        </div>
+    );
+}
 
 export const StarRating = (props) => {
     /* New Code */
-    const [showDetails, setShowDetails] = useState("none");
-    const [hideAverageStarRating, seteHideAverageStarRating] = useState("block");
+    const [detailStarRatingBlock, setDetailStarRatingBlock] = useState("none");
+    const [averageStarRatingBlock, setAverageStarRatingBlock] = useState("block");
+    const showDetails = props.showDetails;
+    console.log("props.showDetails:", props.showDetails);
+    console.log("showDetails:", showDetails);
     const rating = props.rating
         ? props.rating
         : { "5": 0, "4": 0, "3": 0, "2": 0, "1": 0 };
 
-    let starCount = 1;
+    let totalVotes = 1;
     let starRatingWeighted = 0;
-
-
+    // Converting an object to an array of objects.
+    // https://medium.com/chrisburgin/javascript-converting-an-object-to-an-array-94b030a1604c
+    const starRatingArray = Object.keys(rating).map(i => rating[i]);
 
     for (let i = 1; i < Object.keys(rating).length + 1; i++) {
-        starCount += rating[i.toString()];
+        totalVotes += rating[i.toString()];
         starRatingWeighted += i * rating[i.toString()];
     }
-    if (starCount > 1) starCount--;
-    // console.log("rating:", rating);
-    console.log("starCount:", starCount);
-    // console.log("starRating", starRating);
+    if (totalVotes > 1) totalVotes--;
 
-    const starRatingOverAll = Math.round((starRatingWeighted / starCount) * 10) / 10;
+    const starRatingWeightedAverage = Math.round((starRatingWeighted / totalVotes) * 10) / 10;
 
-    const ratingAll = { "--rating": `${starRatingOverAll}` };
-
-    const label = `Rating of this product is ${starRatingOverAll} out of 5.`;
-
+    const label = `Rating of this product is ${starRatingWeightedAverage} out of 5.`;
+    console.log("starRatingWeightedAverage:", starRatingWeightedAverage);
     const style = {
-        "display": `${hideAverageStarRating}`,
-        "--rating": `${starRatingOverAll}`
+        "display": `${averageStarRatingBlock}`,
+        "--rating": `${starRatingWeightedAverage}`
     };
+    const mouseEnter = () => {
+        if (showDetails) {
+            setDetailStarRatingBlock("block"); setAverageStarRatingBlock("none");
+        }
+    }
+    const mouseLeave = () => {
+        setDetailStarRatingBlock("none"); setAverageStarRatingBlock("block");
+    }
 
     return (
         <div
-            onMouseEnter={() => { setShowDetails("block"); seteHideAverageStarRating("none"); }}
-            onMouseLeave={() => { setShowDetails("none"); seteHideAverageStarRating("block"); }}
+            onMouseEnter={() => { mouseEnter() }}
+            onMouseLeave={() => { mouseLeave() }}
         >
             <div
                 className="stars-before"
@@ -45,23 +73,22 @@ export const StarRating = (props) => {
                 style={style}
             >
             </div>
-            <div style={{ minHeight: '150px', display: `${showDetails}` }}>
-                <div id="example-collapse-text">
-                    <div style={{ width: 'max-content', textAlign: 'right' }}>
-                        <div style={{ textAlign: 'left', fontWeight: 700 }}>Star Ratings</div>
-                        <div className="stars" style={ratingAll} aria-label={label}>5 : </div>
-                        <br />
-                        <div className="stars" style={ratingAll} aria-label={label}>4 : </div>
-                        <br />
-                        <div className="stars" style={ratingAll} aria-label={label}>3 : </div>
-                        <br />
-                        <div className="stars" style={ratingAll} aria-label={label}>2 : </div>
-                        <br />
-                        <div className="stars" style={ratingAll} aria-label={label}>1 : </div>
-                    </div>
+            <div style={{ minHeight: '150px', display: `${detailStarRatingBlock}` }}>
+
+                <div style={{ width: '100%', textAlign: 'right' }}>
+                    <div style={{ textAlign: 'left', fontWeight: 700 }}>Star Ratings</div>
+                    {
+                        starRatingArray.map((rating, i) => {
+                            const key = `rating_${i}`;
+                            return (
+                                <RatingDetail key={key} star={i} votes={rating} totalVotes={totalVotes} />
+                            );
+                        }).reverse()
+                    }
                 </div>
             </div>
         </div>
+
     );
 }
 

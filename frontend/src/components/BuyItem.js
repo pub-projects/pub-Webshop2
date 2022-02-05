@@ -32,19 +32,18 @@ export const BuyItem = (props) => {
                     />
                 </div>
                 <div className="star-rating-wrapper">
-                    <StarRating rating={product.rating ? product.rating : 0} />
+                    <StarRating showDetails={false} rating={product.rating ? product.rating : 0} />
                 </div>
             </div>
             <span className="input-style">
+                <span className="buyItem-qty">Qty.</span>
                 <input
                     type='number'
-                    className='input-style'
                     min='0'
-                    max='25'
+                    max='99'
                     step='1'
                     value={quantity}
                     onChange={e => setQuantity(e.target.value)}
-
                 />
             </span>
 
@@ -62,6 +61,6 @@ export const BuyItem = (props) => {
                     onClick={handleBuyClick}
                 />
             </div>
-        </div >
+        </div>
     )
 }
