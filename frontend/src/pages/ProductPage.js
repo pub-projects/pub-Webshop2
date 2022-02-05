@@ -20,6 +20,9 @@ export const ProductPage = () => {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
+    // Remove test_rating for production.
+    const test_rating = { "rating": { "5": 126, "4": 73, "3": 313, "2": 36, "1": 64 } };
+
     return (
         <ProductConsumer>{(products) => {
             //console.log("ProductPage:", products);
@@ -44,7 +47,7 @@ export const ProductPage = () => {
                             <div className="col-md-6">
                                 <div className="card-body">
                                     <h4 className="card-title">{product.name}</h4>
-                                    <StarRating rating={product.rating ? product.rating : 0} />
+                                    <StarRating showDetails={true} rating={product.rating ? product.rating : test_rating.rating} />
                                     <hr />
 
                                     <DisplayPrice

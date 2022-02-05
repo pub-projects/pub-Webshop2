@@ -1,71 +1,75 @@
 /* Button Styles */
 .btn-style {
-    padding: 0.5em 1em;
-    border-radius: 5px;
-    border: 0px;
-    box-shadow: 0 0 1px 1px grey;
-    margin-right: 0.5em;
-    font-size: 0.9em;
-    font-weight: 700;
+  padding: 0.5em 1em;
+  border-radius: 5px;
+  border: 0px;
+  box-shadow: 0 0 1px 1px grey;
+  margin-right: 0.5em;
+  font-size: 0.9em;
+  font-weight: 700;
 }
 
-.add-to-cart-btn-style{ 
-    background: yellow;
+.add-to-cart-btn-style {
+  background: yellow;
 }
-.buy-btn-style { 
-    background: orange;
- }
-
- /* Input element style */
-.input-style{ 
-    max-width: 3em;
-    margin-bottom: 1em; 
-    display: block;
+.buy-btn-style {
+  background: orange;
 }
-.input-style::before{
-    content: "Qty:";
-    display: block;
-    font-size: 0.8em;
+.buyItem-qty {
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
 }
 
-.price-wrapper{
-    margin: 1em 0;
+/* Input element style */
+.input-style {
+  max-width: 3em;
+  margin-bottom: 1em;
+  display: block;
 }
-.price-wrapper::before{
-    content: "Now ONLY";
-    color: red;
-    font-style: italic;
-    font-weight: bold;
-    display: block;
+.input-style input {
+  max-width: 3em;
+  margin-bottom: 1em;
+  text-align: center;
+}
+
+.price-wrapper {
+  margin: 1em 0;
+}
+.price-wrapper::before {
+  content: "Now ONLY";
+  color: red;
+  font-style: italic;
+  font-weight: bold;
+  display: block;
 }
 
 // Removes header part of BuyItem for smaller devices.
-.full-size-header{
-    display: none;
+.full-size-header {
+  display: none;
 }
 
-@media(min-width: 550px){
-    .btn-style {
-        padding: 0.5em 1em;
-        border-radius:1.5em;
-        border: 0px;
-        box-shadow: 0 0 2px 2px silver;
-        margin-bottom: 0.5em;
-        font-size: 0.9em;
-        font-weight: 700;
-        width: 100%;
-    }
-    .full-size-header{
-        display: block;
-    }
-    .buy-item-wrapper{
-        border: solid 1px lightgray;
-        border-radius: 0.5em;
-        margin:2em 0.5em;
-        position: absolute;
-    }
+@media (min-width: 550px) {
+  .btn-style {
+    padding: 0.5em 1em;
+    border-radius: 1.5em;
+    border: 0px;
+    box-shadow: 0 0 2px 2px silver;
+    margin-bottom: 0.5em;
+    font-size: 0.9em;
+    font-weight: 700;
+    width: 100%;
+  }
+  .full-size-header {
+    display: block;
+  }
+  .buy-item-wrapper {
+    border: solid 1px lightgray;
+    border-radius: 0.5em;
+    margin: 2em 0.5em;
+    position: absolute;
+  }
 
-    .star-rating-wrapper{
-        margin-bottom: 2em;;
-    }
+  .star-rating-wrapper {
+    margin-bottom: 2em;
+  }
 }
