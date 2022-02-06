@@ -10,7 +10,14 @@
         "itemsInStock": 10,
         "cost": 26.08,
         "sale": false,
-        "reduction": 0
+        "reduction": 0,
+        "rating": {
+            "5": 54,
+            "4": 43,
+            "3": 28,
+            "2": 5,
+            "1": 18
+        }
     },
     {
         "name": "Sceptre E248W-19203R 24\" Ultra Thin 75Hz 1080p LED Monitor ",
@@ -23,7 +30,14 @@
         "itemsInStock": 10,
         "cost": 60.86,
         "sale": true,
-        "reduction": 0.25
+        "reduction": 0.25,
+        "rating": {
+            "5": 54,
+            "4": 43,
+            "3": 28,
+            "2": 5,
+            "1": 18
+        }
     },
     {
         "name": "2021 Apple 11-inch iPad Pro (Wi-Fi, 128GB) - Space Gray",
@@ -36,7 +50,14 @@
         "itemsInStock": 10,
         "cost": 330.00,
         "sale": false,
-        "reduction": 0
+        "reduction": 0,
+        "rating": {
+            "5": 54,
+            "4": 43,
+            "3": 28,
+            "2": 5,
+            "1": 18
+        }
     },
     {
         "name": "WD 2TB Elements Portable External Hard Drive HDD",
@@ -49,7 +70,14 @@
         "itemsInStock": 10,
         "cost": 26.08,
         "sale": true,
-        "reduction": 0.25
+        "reduction": 0.25,
+        "rating": {
+            "5": 54,
+            "4": 43,
+            "3": 28,
+            "2": 5,
+            "1": 18
+        }
     },
     {
         "name": "DUODUOGO 5G WiFi 2 in 1 Tablet",
@@ -62,7 +90,14 @@
         "itemsInStock": 10,
         "cost": 62.85,
         "sale": false,
-        "reduction": 0
+        "reduction": 0,
+        "rating": {
+            "5": 54,
+            "4": 43,
+            "3": 28,
+            "2": 5,
+            "1": 18
+        }
     },
     {
         "name": "Acer Aspire 5 A515-46-R14K",
@@ -75,7 +110,14 @@
         "itemsInStock": 10,
         "cost": 156.99,
         "sale": false,
-        "reduction": 0
+        "reduction": 0,
+        "rating": {
+            "5": 54,
+            "4": 43,
+            "3": 28,
+            "2": 5,
+            "1": 18
+        }
     },
     {
         "name": "Layla Paperback – December 8, 2020",
@@ -88,7 +130,14 @@
         "itemsInStock": 10,
         "cost": 6.50,
         "sale": false,
-        "reduction": 0
+        "reduction": 0,
+        "rating": {
+            "5": 54,
+            "4": 43,
+            "3": 28,
+            "2": 5,
+            "1": 18
+        }
     },
     {
         "name": "HTML and CSS: Design and Build Websites 1st Edition ",
@@ -101,7 +150,14 @@
         "itemsInStock": 10,
         "cost": 15.21,
         "sale": false,
-        "reduction": 0
+        "reduction": 0,
+        "rating": {
+            "5": 54,
+            "4": 43,
+            "3": 28,
+            "2": 5,
+            "1": 18
+        }
     },
     {
         "name": "CSS: The Definitive Guide: Visual Presentation for the Web 4th Edition ",
@@ -114,7 +170,14 @@
         "itemsInStock": 10,
         "cost": 22.17,
         "sale": true,
-        "reduction": 0.30
+        "reduction": 0.30,
+        "rating": {
+            "5": 54,
+            "4": 43,
+            "3": 28,
+            "2": 5,
+            "1": 18
+        }
     },
     {
         "name": "JavaScript: The Definitive Guide: Master the World's Most-Used Programming Language 7th Edition",
@@ -127,7 +190,14 @@
         "itemsInStock": 10,
         "cost": 22.17,
         "sale": false,
-        "reduction": 0
+        "reduction": 0,
+        "rating": {
+            "5": 54,
+            "4": 43,
+            "3": 28,
+            "2": 5,
+            "1": 18
+        }
     },
     {
         "name": "GoodBaby Touchless Thermometer",
@@ -140,7 +210,14 @@
         "itemsInStock": 10,
         "cost": 6.28,
         "sale": false,
-        "reduction": 0
+        "reduction": 0,
+        "rating": {
+            "5": 54,
+            "4": 43,
+            "3": 28,
+            "2": 5,
+            "1": 18
+        }
     },
     {
         "name": "Baby Playpen Portable Kids Safety Play Center",
@@ -153,7 +230,14 @@
         "itemsInStock": 10,
         "cost": 59.03,
         "sale": false,
-        "reduction": 0
+        "reduction": 0,
+        "rating": {
+            "5": 54,
+            "4": 43,
+            "3": 28,
+            "2": 5,
+            "1": 18
+        }
     },
     {
         "name": "Mosquito Net for Stroller",
@@ -166,7 +250,14 @@
         "itemsInStock": 10,
         "cost": 2.83,
         "sale": true,
-        "reduction": 0.40
+        "reduction": 0.40,
+        "rating": {
+            "5": 54,
+            "4": 43,
+            "3": 28,
+            "2": 5,
+            "1": 18
+        }
     },
     {
         "name": "OXILAM Mini Size H7 LED Bulbs",
@@ -179,7 +270,14 @@
         "itemsInStock": 10,
         "cost": 11.82,
         "sale": false,
-        "reduction": 0
+        "reduction": 0,
+        "rating": {
+            "5": 54,
+            "4": 43,
+            "3": 28,
+            "2": 5,
+            "1": 18
+        }
     },
     {
         "name": "AstroAI Digital Tire Inflator",
@@ -192,7 +290,14 @@
         "itemsInStock": 10,
         "cost": 11.96,
         "sale": false,
-        "reduction": 0
+        "reduction": 0,
+        "rating": {
+            "5": 54,
+            "4": 43,
+            "3": 28,
+            "2": 5,
+            "1": 18
+        }
     },
     {
         "name": "KEWIG Bike Phone Mount",
@@ -205,7 +310,14 @@
         "itemsInStock": 10,
         "cost": 6.91,
         "sale": false,
-        "reduction": 0
+        "reduction": 0,
+        "rating": {
+            "5": 54,
+            "4": 43,
+            "3": 28,
+            "2": 5,
+            "1": 18
+        }
     },
     {
         "name": "MOTOPOWER MP69033",
@@ -218,6 +330,13 @@
         "itemsInStock": 10,
         "cost": 11.34,
         "sale": true,
-        "reduction": 0.20
+        "reduction": 0.20,
+        "rating": {
+            "5": 54,
+            "4": 43,
+            "3": 28,
+            "2": 5,
+            "1": 18
+        }
     }
 ]
