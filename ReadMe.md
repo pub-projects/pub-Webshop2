@@ -5,16 +5,18 @@
 The goal with the project is to create a fictive simple webshop.
 I'm using JavaScript in both ends and a MongoDB database. I'm planning other similar projects that will probably use the same frontend but different backend support like .NET/C# SQLServer and PHP MySQL/MariaDB.
 
-##Front-End
+## Front-End
+
 Front end is built in React initialized by npx create-react-app.
 It's also using a Bootstrap version for react [React Bootstrap](https://react-bootstrap.github.io/)
 
-##Back-End
+## Back-End
+
 Back end is also written in JavaScript and utilizes Node.js and express.js.
 It also uses a local MongoDB database preloaded with the data found in the JSON array file initialDataProducts-mongodb.json located in the data-store folder.
 Another initialization file for the user database will be added later when I get to login, user area, and site administration area.
 
-##The Plan
+## The Plan
 
 - Login and Creating Accounts
   - Using username/email
