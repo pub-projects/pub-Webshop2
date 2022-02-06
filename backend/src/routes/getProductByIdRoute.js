@@ -6,11 +6,11 @@ export const getProductById = {
     method: 'get',
     handler: async (req, res) => {
         try {
-            const db = getDbConnection('webshop2');
+            const db = getDbConnection('Webshop2');
             const { id } = req.params;
             const o_id = new ObjectId(id); // *** Important *** without this mongodb doesn't find the _id
 
-            const data = await db.collection('products').findOne({ _id: o_id });
+            const data = await db.collection('Products').findOne({ _id: o_id });
 
             if (!data) return res.sendStatus(401);
 

@@ -2,10 +2,17 @@
 body {
   background-color: whitesmoke;
 }
-.siteWrapper {
-  min-height: 100vh;
-  top: 0px;
-  left: 0px;
+html {
+  font-family: "M PLUS 1", Arial, Helvetica, sans-serif;
+  font-size: 14px;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Zen Antique Soft", "Times New Roman", Times, serif;
 }
 .siteContent {
   position: relative; /*important to footer placement*/
@@ -17,7 +24,11 @@ body {
   min-height: 100vh;
   overflow-y: auto;
 }
-
+.siteWrapper {
+  min-height: 100vh;
+  top: 0px;
+  left: 0px;
+}
 @media (max-width: 600px) {
   .container {
     padding-left: 0.3em;

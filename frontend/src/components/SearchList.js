@@ -12,7 +12,6 @@ export const SearchList = (props) => {
                 <div className="search-result">The search for "{props["searchTerm"]}" gave {length} results.</div>
                 : <div className="search-result">The search for "{props["searchTerm"]}" gave {length} result.</div>}
             <div className="card-group">
-
                 {
                     products.map((item, key) => {
                         return (
