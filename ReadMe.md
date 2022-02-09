@@ -46,4 +46,4 @@ Another initialization file for the user database will be added later when I get
 
 Then we will also have the normal navigation bar that will change apperance depending on the user's role assignment and a simple footer.
 
-- Chris Johannesson 2022
+\- Chris Johannesson 2022

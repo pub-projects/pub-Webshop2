@@ -3,7 +3,7 @@ import { StarRating } from './StarRating';
 
 export const ProductItem = (props) => {
     const product = props.product;
-    const urlBase = "/api/images/";
+    const urlImageBase = "/api/images/";
     const productUrl = "/product-page/" + product._id;
 
     if (props.counter > -1) {
@@ -21,7 +21,7 @@ export const ProductItem = (props) => {
             <div className="cardImageWrapper px-4 py-2">
                 <div className="imageContainer">
                     <a href={productUrl}>
-                        <img src={product.imgRef.match('=') ? urlBase + product.imgRef.split('=')[1] : product.imgRef} alt={product.name} className="card-img-top" />
+                        <img src={product.imgRef.match('=') ? urlImageBase + product.imgRef.split('=')[1] : product.imgRef} alt={product.name} className="card-img-top" />
                     </a>
                 </div>
             </div>

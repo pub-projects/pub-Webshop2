@@ -9,7 +9,7 @@ import ShowMoreText from 'react-show-more-text';
 
 export const ProductPage = () => {
     const { id } = useParams();
-    const urlBase = "/api/images/";
+    const urlImageBase = "/api/images/";
 
     const executeOnClick = (isExpanded) => {
         console.log(isExpanded);
@@ -25,7 +25,7 @@ export const ProductPage = () => {
 
     return (
         <ProductConsumer>{(products) => {
-            //console.log("ProductPage:", products);
+            console.log("ProductPage:", products);
             const product = products.find(item => item._id === id);
             return (
                 <>{product ? <>
@@ -33,7 +33,7 @@ export const ProductPage = () => {
                         <Modal.Header closeButton style={{ lineHeight: "0.5em", fontSize: "0.5em", borderBottom: "0px" }}>
                         </Modal.Header>
                         <Modal.Body>
-                            <img src={product.imgRef.match('=') ? urlBase + product.imgRef.split('=')[1] : product.imgRef} className="img-fluid rounded-start" alt={product.name} />
+                            <img src={product.imgRef.match('=') ? urlImageBase + product.imgRef.split('=')[1] : product.imgRef} className="img-fluid rounded-start" alt={product.name} />
                         </Modal.Body>
                     </Modal>
 
@@ -41,7 +41,7 @@ export const ProductPage = () => {
                         <div className="row g-0">
                             <div className="image-container col-md-3">
                                 <button className="modal-image-button" onClick={handleShow}>
-                                    <img src={product.imgRef.match('=') ? urlBase + product.imgRef.split('=')[1] : product.imgRef} className="img-fluid rounded-start" alt={product.name} />
+                                    <img src={product.imgRef.match('=') ? urlImageBase + product.imgRef.split('=')[1] : product.imgRef} className="img-fluid rounded-start" alt={product.name} />
                                 </button>
                             </div>
                             <div className="col-md-6">
