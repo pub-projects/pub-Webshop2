@@ -6,9 +6,9 @@ export const ProductItem = (props) => {
     const urlImageBase = "/api/images/";
     const productUrl = "/product-page/" + product._id;
 
-    if (props.counter > -1) {
-        props.setCounter(props.counter + 1);
-    }
+    // if (props.counter > -1) {
+    //     props.setCounter(props.counter + 1);
+    // }
 
     const test_rating = { "rating": { "5": 100, "4": 33, "3": 13, "2": 36, "1": 20 } };
 

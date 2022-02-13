@@ -21,11 +21,5 @@ export const SearchList = (props) => {
                 }
             </div>
         </>
-
     );
-
 }
-/*products.filter(product =>
-                            product.name.toLowerCase() === searchTerm.value.toLowerCase()
-                        )
-                        */

@@ -27,8 +27,8 @@ export const StarRating = (props) => {
     const [detailStarRatingBlock, setDetailStarRatingBlock] = useState("none");
     const [averageStarRatingBlock, setAverageStarRatingBlock] = useState("block");
     const showDetails = props.showDetails;
-    console.log("props.showDetails:", props.showDetails);
-    console.log("showDetails:", showDetails);
+    // console.log("props.showDetails:", props.showDetails);
+    // console.log("showDetails:", showDetails);
     const rating = props.rating
         ? props.rating
         : { "5": 0, "4": 0, "3": 0, "2": 0, "1": 0 };
@@ -48,7 +48,7 @@ export const StarRating = (props) => {
     const starRatingWeightedAverage = Math.round((starRatingWeighted / totalVotes) * 10) / 10;
 
     const label = `Rating of this product is ${starRatingWeightedAverage} out of 5.`;
-    console.log("starRatingWeightedAverage:", starRatingWeightedAverage);
+    // console.log("starRatingWeightedAverage:", starRatingWeightedAverage);
     const style = {
         "display": `${averageStarRatingBlock}`,
         "--rating": `${starRatingWeightedAverage}`
