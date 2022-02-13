@@ -1,7 +1,7 @@
 import { SearchBar } from '../components/SearchBar';
 import { useParams } from 'react-router-dom';
 import { SearchList } from "../components/SearchList";
-import { ProductConsumer } from '../App';
+import { ProductConsumer } from '../components/ProductsContext';
 
 export const SearchLandingPage = () => {
     console.log("SearchLandingPage");

@@ -10,9 +10,17 @@
 }
 
 .add-to-cart-btn-style {
+  background: rgb(240, 240, 0);
+  transition: background 0.5s 20ms;
+}
+.add-to-cart-btn-style:hover {
   background: yellow;
 }
 .buy-btn-style {
+  background: rgb(230, 149, 0);
+  transition: background 0.5s 20ms;
+}
+.buy-btn-style:hover {
   background: orange;
 }
 .buyItem-qty {

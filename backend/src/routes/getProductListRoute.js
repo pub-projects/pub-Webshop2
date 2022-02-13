@@ -5,6 +5,7 @@ export const getProductList = {
     method: 'get',
     handler: async (req, res) => {
         try {
+            console.log("getProductList");
             const db = getDbConnection('Webshop2');
             const data = await db.collection('Products').find({}).toArray((err, result) => {
                 if (err) {
