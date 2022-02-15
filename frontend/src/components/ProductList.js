@@ -1,5 +1,5 @@
 import { ProductItem } from './ProductItem';
-import { ProductsContext, ProductConsumer } from './ProductsContext';
+import { ProductsContext, ProductConsumer } from '../util/ProductsContext';
 
 
 

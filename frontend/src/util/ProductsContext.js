@@ -35,7 +35,6 @@ const ProductsContext = (props) => {
 }
 
 export {
-    ProductData,
     ProductConsumer,
     ProductsContext,
 }

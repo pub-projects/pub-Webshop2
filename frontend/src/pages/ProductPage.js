@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Modal, Col, Row } from 'react-bootstrap';
-import { ProductConsumer, ProductsContext } from '../components/ProductsContext';
+import { ProductConsumer, ProductsContext } from '../util/ProductsContext';
 import { useParams } from 'react-router-dom';
 import { StarRating } from '../components/StarRating';
 import { DisplayPrice } from '../components/DisplayPrice';
