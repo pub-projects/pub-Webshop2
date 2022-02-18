@@ -1,76 +1,67 @@
 import React, { useState, useEffect } from 'react';
 
-const CartData = React.createContext();
-const CartConsumer = CartData.Consumer;
+const CartContext = React.createContext();
 
-const CartContext = props => {
-    if (sessionStorage.getItem('cart') === 'undefined') sessionStorage.removeItem('cart');
-    const cartStorage = sessionStorage.getItem('cart');
-    const [cart, setCart] = useState(() => {
-        return (
-            cartStorage
-                ? JSON.parse(cartStorage)
-                : []
-        );
-    });
+const CartProvider = ({ children }) => {
+    const [cart, setCart] = useState([]);
 
     useEffect(() => {
-        CartItem();
-    }, [cart]);
+        return (
+            sessionStorage.setItem("cart", cart)
+        )
+    }, [cart])
 
-    const addToCart = ({ id, qty }) => {
-        const newCartItem = { id, qty };
-        const sessionCart = sessionStorage.getItem('cart');
-
-        if (!sessionCart) {
-            sessionStorage.setItem('cart', '[' + JSON.stringify(newCartItem) + ']');
-        }
-        else {
-            const parsedCart = JSON.parse(sessionCart);
-            const tmpCart = [];
-            for (let i = 0; i < parsedCart.length; i++) {
-                tmpCart.push(parsedCart[i]);
-            }
-
-            // Check if item is already added
-            const objIndx = tmpCart.findIndex((obj => obj.id === newCartItem.id));
-            objIndx < 0
-                ? tmpCart.push(newCartItem)
-                : tmpCart[objIndx].qty += Number(newCartItem.qty);
-
-            sessionStorage.setItem('cart', JSON.stringify(tmpCart));
-
-            setCart(tmpCart);
-        }
+    const addToCart = (newCartItem) => {
+        console.log("CartContext - addToCart cart:", cart);
+        /*
+  //     Using a callback/wrapper function the spread operator and 
+  //     the new item (props) to be added to the cartContent array.
+  //     This is the proper way to add to an array in react useState hooks.
+  //     ref: https://javascript.plainenglish.io/how-to-add-to-an-array-in-react-state-3d08ddb2e1dc
+  //     accessed Feb. 10, 2022.
+  //     setCartContent(cartContent => [...cartContent, props])
+  //   */
+        if (newCartItem && newCartItem.id && newCartItem.qty) setCart(cartItems => [...cartItems, newCartItem]);
+        else console.log("CartContext - addToCart: newCartItem missing id, qty, or both");
     }
 
     return (
-        <CartData.Provider value={{
-            ...cart,
+        <CartContext.Provider value={{
+            cart,
             addToCart
-        }}>
-            {props.children}
-        </CartData.Provider>
-    );
+        }} >
+            {children}
+        </CartContext.Provider>
+    )
 }
 
-const CartItem = () => {
-    const cartStorage = JSON.parse(sessionStorage.getItem('cart'));
-    const x = cartStorage && cartStorage.length;
 
+const CartConsumer = ({ children }) => {
     return (
-        <div className="cart">
-            {
-                x > 0
-                    ? <><span className="material-icons">shopping_cart</span><i className="cart-items">{x}</i></>
-                    : <span className="material-icons-outlined">shopping_cart</span>
-            }
+        <CartContext.Consumer>
+            {children}
+        </CartContext.Consumer>
+    )
+}
+
+const Cart = ({ cartData }) => {
+    const numberOfItems = cartData.cart ? cartData.cart.length : 0;
+    console.log("CartContext - Cart - cartData", cartData);
+    return (
+        <div className="cart-wrapper">
+            <div className="cart">
+                {numberOfItems > 0
+                    ? <><span className="material-icons cart">shopping_cart </span><i className="cart-items">{numberOfItems}</i></>
+                    : <i className="material-icons-outlined cart">shopping_cart</i>
+                }
+            </div>
         </div>
     );
 }
 
+
 export {
-    CartContext,
+    CartProvider,
     CartConsumer,
-    CartItem
+    Cart
 }
