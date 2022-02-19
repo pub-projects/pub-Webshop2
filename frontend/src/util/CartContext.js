@@ -1,96 +1,67 @@
 import React, { useState, useEffect } from 'react';
 
-const CartData = React.createContext();
-const CartConsumer = CartData.Consumer;
+const CartContext = React.createContext();
 
-const CartContext = props => {
+const CartProvider = ({ children }) => {
     const [cart, setCart] = useState([]);
 
     useEffect(() => {
-        const cartStorage = sessionStorage.getItem('cart');
-        console.log("CartContext - uesEffect cartStorage:", cartStorage);
-        setCart(() => {
-            return (
-                cartStorage
-                    ? JSON.parse(cartStorage)
-                    : []
-            );
-        });
+        return (
+            sessionStorage.setItem("cart", cart)
+        )
+    }, [cart])
 
-        setCart();
-    }, []);
-
-    const addToCart = ({ id, qty }) => {
-        const newCartItem = { id, qty };
-        const _sessionCart = sessionStorage.getItem('cart');
-
-        console.log("CartContext - addToCart newCartItem:", newCartItem);
-        console.log("CartContext - addToCart _sessionCart:", _sessionCart);
-
-        if (!_sessionCart) {
-            sessionStorage.setItem('cart', '[' + JSON.stringify(newCartItem) + ']');
-        }
-        else {
-            const _parsedCart = JSON.parse(_sessionCart);
-            const tmpCart = [];
-            for (let i = 0; i < _parsedCart.length; i++) {
-                tmpCart.push(_parsedCart[i]);
-                console.log("_parsedCart i:", i);
-            }
-            console.log("CartContext - addToCart _parsedCart B4 Check:", _parsedCart);
-            console.log("CartContext - addToCart tmpCart B4 Check:", tmpCart);
-            // Check if item is already added
-            const _objIndx = tmpCart.findIndex((obj => obj.id === newCartItem.id));
-            // let _objIndx = -1;
-            // for (let i = 0; i < tmpCart.length; i++) {
-            //     if (tmpCart[i].id === newCartItem.id) _objIndx = i;
-            //     console.log("index i:", i);
-            // }
-
-            console.log("CartContext - addToCart tmpCart B4 update:", tmpCart);
-            console.log("CartContext - addToCart _objIndx:", _objIndx);
-
-            _objIndx < 0
-                ? tmpCart.push(newCartItem)
-                : tmpCart[_objIndx].qty += Number(newCartItem.qty);
-
-            console.log("CartContext - addToCart tmpCart.id:", tmpCart.id);
-            console.log("CartContext - addToCart tmpCart.qty:", tmpCart.qty);
-            // sessionStorage.removeItem('cart');
-            sessionStorage.setItem('cart', JSON.stringify(tmpCart));
-            setCart(tmpCart);
-        }
-        // const newCartItem = { id, qty };
-        // console.log("CartContext - addToCart cart:", typeof cart);
-        // cart !== undefined
-        //     ? setCart(...cart, newCartItem)
-        //     : setCart(newCartItem);
-        // console.log("CartContext - addToCart cart:", cart);
-        // sessionStorage.setItem('cart', JSON.stringify())
+    const addToCart = (newCartItem) => {
+        console.log("CartContext - addToCart cart:", cart);
+        /*
+  //     Using a callback/wrapper function the spread operator and 
+  //     the new item (props) to be added to the cartContent array.
+  //     This is the proper way to add to an array in react useState hooks.
+  //     ref: https://javascript.plainenglish.io/how-to-add-to-an-array-in-react-state-3d08ddb2e1dc
+  //     accessed Feb. 10, 2022.
+  //     setCartContent(cartContent => [...cartContent, props])
+  //   */
+        if (newCartItem && newCartItem.id && newCartItem.qty) setCart(cartItems => [...cartItems, newCartItem]);
+        else console.log("CartContext - addToCart: newCartItem missing id, qty, or both");
     }
 
     return (
-        <CartData.Provider value={{
-            ...cart,
+        <CartContext.Provider value={{
+            cart,
             addToCart
-        }}>
-            {props.children}
-        </CartData.Provider>
-    );
+        }} >
+            {children}
+        </CartContext.Provider>
+    )
 }
 
-const CartItem = () => {
+
+const CartConsumer = ({ children }) => {
     return (
-        <div className="cart">
-            <span className="material-icons-outlined cart">
-                shopping_cart
-            </span>
+        <CartContext.Consumer>
+            {children}
+        </CartContext.Consumer>
+    )
+}
+
+const Cart = ({ cartData }) => {
+    const numberOfItems = cartData.cart ? cartData.cart.length : 0;
+    console.log("CartContext - Cart - cartData", cartData);
+    return (
+        <div className="cart-wrapper">
+            <div className="cart">
+                {numberOfItems > 0
+                    ? <><span className="material-icons cart">shopping_cart </span><i className="cart-items">{numberOfItems}</i></>
+                    : <i className="material-icons-outlined cart">shopping_cart</i>
+                }
+            </div>
         </div>
     );
 }
 
+
 export {
-    CartContext,
+    CartProvider,
     CartConsumer,
-    CartItem
+    Cart
 }
