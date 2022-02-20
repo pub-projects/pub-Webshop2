@@ -1,15 +1,21 @@
-import React from 'react';
+import React, { Profiler } from 'react';
 import ReactDOM from 'react-dom';
 import { App } from './App';
 import { CookiesProvider } from 'react-cookie';
 import reportWebVitals from './reportWebVitals';
 
+const proCB = (id, phase) => {
+  console.log("Profiler - ", id + " : " + phase);
+};
+
 ReactDOM.render(
-  <React.StrictMode>
-    <CookiesProvider>
-      <App />
-    </CookiesProvider>
-  </React.StrictMode>,
+  <Profiler id="index-render" onRender={proCB}>
+    <React.StrictMode>
+      <CookiesProvider>
+        <App />
+      </CookiesProvider>
+    </React.StrictMode>
+  </Profiler>,
   document.getElementById('root')
 );
 
