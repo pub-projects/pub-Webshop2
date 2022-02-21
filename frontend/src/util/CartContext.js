@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Profiler } from 'react';
+import React, { useState, useEffect, Profiler, useRef } from 'react';
 import Nav from 'react-bootstrap/Nav';
 import { CartItemListHover } from '../components/CartItemListHover';
 import { OverlayTrigger, Popover } from 'react-bootstrap';
@@ -68,21 +68,24 @@ const CartConsumer = ({ children }) => {
 const Cart = ({ cartData }) => {
     const numberOfItems = cartData.cart ? cartData.cart.length : 0;
     console.log("CartContext - Cart - cartData", cartData);
-    const [display, setDisplay] = useState(false);
-    const toggleDisplay = () => {
-        setDisplay(!display);
-        console.log("CartContext - Cart - display", display);
+    const [show, setShow] = useState(false);
+    const handleOnMouseEnter = () => {
+        setShow(true);
     }
-    console.log("CartContext - Cart - display after", display);
-    let showCartItemsHover = display ? { "display": 'block' } : { "display": 'none' };
+    const handleOnMouseLeave = () => {
+        setShow(false);
+    }
+    const ref = useRef(null);
     return (
         <Profiler id="CartContext-Cart" onRender={profilerCB}>
             <OverlayTrigger
-                trigger={['hover', 'focus']}
+                //trigger={['hover', 'focus']}
+                show={show} // Control trigger behavior with show instead of trigger.
                 key='bottom'
-                placement='bottom'
+                placement='bottom-end'
+                container={ref}
                 overlay={
-                    <Popover id={`popover-positioned-bottom`}>
+                    <Popover id={`popover-positioned-bottom`} onMouseEnter={handleOnMouseEnter} onMouseLeave={handleOnMouseLeave}>
                         <Popover.Header as="h4">Cart Items</Popover.Header>
                         <Popover.Body>
                             <CartItemListHover cartData={cartData} />
@@ -90,7 +93,7 @@ const Cart = ({ cartData }) => {
                     </Popover>
                 }
             >
-                <div className="cart-wrapper">
+                <div className="cart-wrapper" ref={ref} onMouseEnter={handleOnMouseEnter} onMouseLeave={handleOnMouseLeave}>
                     <Nav.Link href="/cart">
                         <div className="cart" >
                             {numberOfItems > 0
