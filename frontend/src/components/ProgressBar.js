@@ -12,7 +12,7 @@ export const ProgressBar = (props) => {
     const postText = props.post_text ? props.post_text : "";
     const fillLevel = props.percent ? props.percent : 0;
     const fillColor = props.color ? props.color : "#00f";
-    const barStyle = { "width": `${fillLevel}%`, "backgroundColor": `${fillColor}`, "height": "0.8em" }; //`width:${fillLevel}%; color:${fillColor};`;
+    const barStyle = { "width": `${fillLevel}%`, "backgroundColor": `${fillColor}`, "height": "0.8em" };
     return (
         <div style={{ "width": "100%", "display": "flex", "justifyContent": "flex-start", "alignItems": "center" }}>
             <div>{preText}&nbsp; </div>

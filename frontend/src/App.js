@@ -5,6 +5,7 @@ import { SiteFooter } from "./components/SiteFooter";
 import { Routing } from "./components/Routing";
 import ErrorBoundary from './components/ErrorBoundary';
 import { CartProvider } from './util/CartContext';
+import { ProductsContext } from './util/ProductsContext';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles/index.scss';
 
@@ -34,15 +35,17 @@ export const App = () => {
   return (
     <Profiler id="App" onRender={profilerCB}>
       <div className="siteWrapper">
-        <div className="container siteContent">
-          <ErrorBoundary>
-            <CartProvider>
-              <SiteHeader />
-              <Routing />
-              <SiteFooter />
-            </CartProvider>
-          </ErrorBoundary>
-        </div>
+        <ProductsContext>
+          <div className="container siteContent">
+            <ErrorBoundary>
+              <CartProvider>
+                <SiteHeader />
+                <Routing />
+                <SiteFooter />
+              </CartProvider>
+            </ErrorBoundary>
+          </div>
+        </ProductsContext>
       </div>
     </Profiler>
   );

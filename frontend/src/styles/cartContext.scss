@@ -23,10 +23,27 @@
   z-index: 100;
 }
 .cart-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  // display: flex;
+  // flex-direction: column;
+  // justify-content: center;
+  // align-items: center;
+  overflow: visible;
+  position: relative;
   padding-top: 1rem;
   margin-left: 1rem;
   margin-right: 0.5rem;
+  max-width: 24px;
+  max-height: 43px;
+}
+// Remove the padding in _navbar.scss Bootstrap.
+.nav-link {
+  padding: 0px;
+}
+
+.hover-items {
+  position: absolute;
+  z-index: 200;
+  width: min-content;
+  top: 2.5rem;
+  right: 0px;
 }

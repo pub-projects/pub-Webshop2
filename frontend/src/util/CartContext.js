@@ -1,5 +1,7 @@
 import React, { useState, useEffect, Profiler } from 'react';
+import Nav from 'react-bootstrap/Nav';
 import { CartItemListHover } from '../components/CartItemListHover';
+import { OverlayTrigger, Popover } from 'react-bootstrap';
 
 const profilerCB = (id, phase) => {
     console.log("Profiler:", id + " " + phase);
@@ -62,20 +64,43 @@ const CartConsumer = ({ children }) => {
     )
 }
 
+
 const Cart = ({ cartData }) => {
     const numberOfItems = cartData.cart ? cartData.cart.length : 0;
     console.log("CartContext - Cart - cartData", cartData);
+    const [display, setDisplay] = useState(false);
+    const toggleDisplay = () => {
+        setDisplay(!display);
+        console.log("CartContext - Cart - display", display);
+    }
+    console.log("CartContext - Cart - display after", display);
+    let showCartItemsHover = display ? { "display": 'block' } : { "display": 'none' };
     return (
         <Profiler id="CartContext-Cart" onRender={profilerCB}>
-            <div className="cart-wrapper">
-                <div className="cart">
-                    {numberOfItems > 0
-                        ? <><span className="material-icons cart">shopping_cart </span><i className="cart-items">{numberOfItems}</i></>
-                        : <i className="material-icons-outlined cart">shopping_cart</i>
-                    }
+            <OverlayTrigger
+                trigger={['hover', 'focus']}
+                key='bottom'
+                placement='bottom'
+                overlay={
+                    <Popover id={`popover-positioned-bottom`}>
+                        <Popover.Header as="h4">Cart Items</Popover.Header>
+                        <Popover.Body>
+                            <CartItemListHover cartData={cartData} />
+                        </Popover.Body>
+                    </Popover>
+                }
+            >
+                <div className="cart-wrapper">
+                    <Nav.Link href="/cart">
+                        <div className="cart" >
+                            {numberOfItems > 0
+                                ? <><span className="material-icons cart">shopping_cart </span><i className="cart-items">{numberOfItems}</i></>
+                                : <i className="material-icons-outlined cart">shopping_cart</i>
+                            }
+                        </div>
+                    </Nav.Link>
                 </div>
-                <CartItemListHover />
-            </div>
+            </OverlayTrigger>
         </Profiler>
     );
 }
