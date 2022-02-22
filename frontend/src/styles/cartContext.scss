@@ -8,14 +8,9 @@
 .cart-items {
   position: absolute;
   color: black;
-  // background-color: rgba(10, 10, 10, 0.5);
   font-weight: 700;
   font-size: 1rem;
-  // margin-top: 0.8rem;
-  // margin-left: 2rem;
   line-height: 0.9rem;
-  // position: absolute;
-  // text-shadow: 0px 0px 1px black;
   top: 0px;
   left: 0px;
   width: 100%;
@@ -23,10 +18,21 @@
   z-index: 100;
 }
 .cart-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   padding-top: 1rem;
   margin-left: 1rem;
   margin-right: 0.5rem;
+  max-width: 24px;
+  max-height: 43px;
+}
+// Remove the padding in _navbar.scss Bootstrap.
+.nav-link {
+  padding: 0px;
+}
+
+.hover-items {
+  position: absolute;
+  z-index: 200;
+  width: min-content;
+  top: 2.5rem;
+  right: 0px;
 }

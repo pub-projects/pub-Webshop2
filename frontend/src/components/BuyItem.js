@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { DisplayPrice } from './DisplayPrice';
 import { StarRating } from './StarRating';
 import { CartConsumer } from '../util/CartContext';
+import { Profiler, proCB } from '../util/Profiler';
 
 export const BuyItem = (props) => {
     const product = props.product;
@@ -15,11 +16,11 @@ export const BuyItem = (props) => {
         <CartConsumer>
             {(cartData) => (
                 < div className="card-body buy-item-wrapper" >
+                    <Profiler id="BuyItem" onRender={proCB} />
                     <div className="full-size-header">
                         <div>
                             {product.name}
                         </div>
-
                         <div className="price-wrapper" style={{ color: "red" }}>
                             <DisplayPrice
                                 price={product.price}

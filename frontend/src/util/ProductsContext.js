@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Profiler, proCB } from '../util/Profiler';
 
 const ProductData = React.createContext();
 const ProductConsumer = ProductData.Consumer;
@@ -9,7 +10,7 @@ const ProductsContext = (props) => {
 
     useEffect(() => {
         const getData = async () => {
-            console.log("ProductsContext - useEffect - getData");
+            // console.log("ProductsContext - useEffect - getData");
             const data = await axios.get('/api/products/getProductList');
             const arr = await data.data;
             setProducts(arr);
@@ -29,6 +30,7 @@ const ProductsContext = (props) => {
     */
     return (
         <ProductData.Provider value={products}>
+            <Profiler id="ProductsContext" onRender={proCB} />
             {props.children}
         </ProductData.Provider>
     );

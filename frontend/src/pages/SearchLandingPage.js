@@ -2,6 +2,7 @@ import { SearchBar } from '../components/SearchBar';
 import { useParams } from 'react-router-dom';
 import { SearchList } from "../components/SearchList";
 import { ProductConsumer } from '../util/ProductsContext';
+import { Profiler, proCB } from '../util/Profiler';
 
 export const SearchLandingPage = () => {
     console.log("SearchLandingPage");
@@ -14,6 +15,7 @@ export const SearchLandingPage = () => {
     }
     return (
         <div className="">
+            <Profiler id="SearchLandingPage" onRender={proCB} />
             <SearchBar />
             <ProductConsumer>
                 {(products) => {

@@ -1,7 +1,32 @@
 .cart-list-hover-wrapper {
   border: 1px solid black;
-  display: none;
 }
 .cart-list-hover-wrapper:hover {
   display: block;
+}
+
+.cart-hover-items {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 2px;
+  height: 10rem;
+}
+.cart-hover-items div {
+  max-width: 20ch;
+  max-height: 1.5rem;
+  overflow-y: hidden;
+}
+.cart-hover-items div + div {
+  margin-left: 0.5em;
+}
+
+.input-qty {
+  max-width: 3em;
+  margin-bottom: 1em;
+  text-align: center;
+  margin-left: 0.5em;
+}
+
+.image-small {
+  max-height: 80%;
 }
