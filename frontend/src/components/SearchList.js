@@ -1,4 +1,5 @@
 import { ProductItem } from "./ProductItem";
+import { Profiler, proCB } from '../util/Profiler';
 
 export const SearchList = (props) => {
     console.log("SearchList:", props);
@@ -7,7 +8,7 @@ export const SearchList = (props) => {
     const length = products.length;
 
     return (
-        <>
+        <><Profiler id="SearchList" onRender={proCB} />
             {length > 1 || length === 0 ?
                 <div className="search-result">The search for "{props["searchTerm"]}" gave {length} results.</div>
                 : <div className="search-result">The search for "{props["searchTerm"]}" gave {length} result.</div>}

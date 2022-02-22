@@ -1,4 +1,5 @@
 import React from 'react';
+import { Profiler, proCB } from '../util/Profiler';
 
 export const DisplayPrice = (props) => {
     const priceSection = props.price.toString().split(".");
@@ -27,3 +28,4 @@ export const DisplayPrice = (props) => {
         <>{price}</>
     );
 }
+{/* <Profiler id="DisplayPrice" onRender={proCB} /> */ }

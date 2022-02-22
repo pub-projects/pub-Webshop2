@@ -6,6 +6,7 @@
     percent - number
     color - color hex, rgb, rgba, 
 */
+import { Profiler, proCB } from '../util/Profiler';
 
 export const ProgressBar = (props) => {
     const preText = props.pre_text ? props.pre_text : "";
@@ -15,6 +16,7 @@ export const ProgressBar = (props) => {
     const barStyle = { "width": `${fillLevel}%`, "backgroundColor": `${fillColor}`, "height": "0.8em" };
     return (
         <div style={{ "width": "100%", "display": "flex", "justifyContent": "flex-start", "alignItems": "center" }}>
+            {/* <Profiler id="ProgressBar" onRender={proCB} /> */}
             <div>{preText}&nbsp; </div>
             <div style={{ "width": "70%", "border": "inset grey 1px", "borderRadius": "0.3em", "overflow": "hidden", "backgroundColor": "lightgrey" }}>
                 <div style={barStyle}></div>

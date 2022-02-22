@@ -1,24 +1,8 @@
 import { DisplayPrice } from './DisplayPrice';
 import { StarRating } from './StarRating';
-import { Profiler } from 'react';
+import { Profiler, proCB } from '../util/Profiler';
 
-const profilerCallback = (
-    id,
-    phase,
-    actualDuration,
-    baseDuration,
-    startTime,
-    commitTime,
-    interactions
-) => {
-    console.log("Profiler:", id + " " + phase);
-    // console.log("Profiler - phase:", phase);
-    // console.log("Profiler - actualDuration:", actualDuration);
-    // console.log("Profiler - baseDuration:", baseDuration);
-    // console.log("Profiler - startTime:", startTime);
-    // console.log("Profiler - commitTime:", commitTime);
-    // console.log("Profiler - interactions:", interactions);
-}
+
 
 export const ProductItem = (props) => {
     const product = props.product;
@@ -32,13 +16,15 @@ export const ProductItem = (props) => {
     const test_rating = { "rating": { "5": 100, "4": 33, "3": 13, "2": 36, "1": 20 } };
 
     return !product ? (
-        <Profiler id="ProductItem-NoProduct" onRender={profilerCallback}>
+        <>
+            <Profiler id="ProductItem-NoProduct" onRender={proCB} />
             <div className="productItemWrapper">
                 Cannot retrieve product from server.
             </div>
-        </Profiler>
+        </>
     ) : (
-        <Profiler id="ProductItem-Product-OK" onRender={profilerCallback}>
+        <>
+            <Profiler id="ProductItem-Product" onRender={proCB} />
             <div className="card shadow ms-2 me-2 mb-4 pt-2">
                 <div className="cardImageWrapper px-4 py-2">
                     <div className="imageContainer">
@@ -60,6 +46,6 @@ export const ProductItem = (props) => {
                     </div>
                 </div>
             </div>
-        </Profiler>
+        </>
     )
 }
