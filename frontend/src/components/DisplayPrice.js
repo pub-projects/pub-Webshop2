@@ -15,7 +15,7 @@ export const DisplayPrice = (props) => {
 
     let price = "";
     switch (props.displayStyle) {
-        case "regular": price = <p className="text-danger">{numberFormat(Number(props.price))}</p>;
+        case "regular": price = <>{numberFormat(Number(props.price))}</>;
             break;
         case "amazon": price = props.symbolPlacement === "pre" ? <p><span className="smaller">{props.symbol}</span><span className="normal">{wholePart}</span><span className="smaller">{fractionPart}</span></p> : <p><span className="normal">{wholePart}</span><span className="smaller">{fractionPart}</span><span className="normal">{props.symbol}</span></p>;
             break;

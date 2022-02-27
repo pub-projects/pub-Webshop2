@@ -1,3 +1,11 @@
+/* ***** Cart ***** */
+
+/* ***** Cart Popover ***** */
+
+/* ***** Cart The Item List ***** */
+
+/* ***** Cart Item ***** */
+
 .cart-list-hover-wrapper {
   border: 1px solid black;
 }
@@ -7,26 +15,65 @@
 
 .cart-hover-items {
   display: flex;
-  justify-content: space-evenly;
-  padding: 2px;
-  height: 10rem;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 0.5em;
+}
+.cart-hover-items div:first-child {
+  margin-top: 0px;
 }
 .cart-hover-items div {
-  max-width: 20ch;
-  max-height: 1.5rem;
   overflow-y: hidden;
 }
 .cart-hover-items div + div {
   margin-left: 0.5em;
 }
 
+.cart-item-delete-icon {
+  font-size: 1rem;
+  color: red;
+  border: 0px;
+  background-color: transparent;
+}
+
+.cart-item {
+  height: 1.8rem;
+  vertical-align: middle;
+  font-size: 1rem;
+  padding-top: 0.2rem;
+}
+.cart-item-delete {
+  background-color: transparent;
+}
+.cart-item-image {
+  width: fit-content;
+  max-width: 2rem;
+}
+.cart-item-name {
+  max-width: 20ch;
+  max-heigth: 100%;
+  word-wrap: no-wrap;
+}
+.cart-item-price {
+}
+.cart-item-qty {
+  padding-top: 0px;
+}
 .input-qty {
-  max-width: 3em;
-  margin-bottom: 1em;
+  width: 3em;
   text-align: center;
-  margin-left: 0.5em;
+  background-color: transparent;
 }
 
 .image-small {
-  max-height: 80%;
+  max-height: 90%;
+}
+.popover {
+  max-width: max-content;
+}
+.popover-header {
+  text-align: center;
+}
+.popover-body {
+  padding: 0.5rem;
 }

@@ -20,7 +20,26 @@ const CartProvider = ({ children }) => {
 
     }, []);
 
-    const addToCart = (newCartItem) => {
+    const _itemInCart = (item) => {
+        console.log("_itemInCart-cart:", cart);
+        console.log("_itemInCart-item:", item);
+        if (cart && cart.length > 0 && item.id) {
+            for (let i = 0; i < cart.length; i++) {
+                if (cart[i].id === item.id) return true;
+            }
+        }
+        return false;
+    }
+    const _findIndex = (item) => {
+        if (cart && cart.length > 0 && item.id) {
+            for (let i = 0; i < cart.length; i++) {
+                if (cart[i].id === item.id) return i;
+            }
+        }
+        return -1;
+    }
+
+    const addToCart = (cartItem) => {
         // console.log("CartContext - addToCart cart:", cart);
         /*
     //     Using a callback/wrapper function the spread operator and 
@@ -30,24 +49,57 @@ const CartProvider = ({ children }) => {
     //     accessed Feb. 10, 2022.
     //     setCartContent(cartContent => [...cartContent, props])
     //   */
-        if (newCartItem && newCartItem.id && newCartItem.qty) {
-            setCart(cartItems => [...cartItems, newCartItem]);
-            const newCartArray = cart;
-            newCartArray.push(newCartItem);
-            sessionStorage.setItem("cart", JSON.stringify(newCartArray));
+        if (cartItem && cartItem.id && cartItem.qty) {
+            if (!_itemInCart(cartItem)) {
+                setCart(cartItems => [...cartItems, cartItem]);
+                const newCartArray = cart;
+                newCartArray.push(cartItem);
+                sessionStorage.setItem("cart", JSON.stringify(newCartArray));
+            }
         }
         else console.log("CartContext - addToCart: newCartItem missing id, qty, or both");
+    }
+
+    const removeFromCart = (cartItem) => {
+        console.log("removeFromCart - ", cartItem);
+        const tmpCart = cart;
+        let removed;
+        let indx;
+        if (_itemInCart(cartItem)) {
+            indx = _findIndex(cartItem);
+            console.log("***removeFromCart indx, id", indx + " : " + cartItem.id);
+            removed = tmpCart.splice(indx, 1);
+            console.log("removeFromCart-removed:", removed);
+            setCart(tmpCart);
+            sessionStorage.setItem('cart', JSON.stringify(tmpCart));
+        }
+    }
+
+    const updateCartItemQuantity = (cartItem, qty) => {
+        cartItem.qty = qty;
+        const tmpCart = cart;
+        let indx;
+        if (_itemInCart(cartItem)) {
+            indx = _findIndex(cartItem);
+            tmpCart.splice(indx, 1, cartItem);
+            setCart(tmpCart);
+            sessionStorage.setItem('cart', JSON.stringify(tmpCart));
+        }
     }
 
     return (
         <CartContext.Provider value={{
             cart,
-            addToCart
+            addToCart,
+            removeFromCart,
+            updateCartItemQuantity
         }} >
             {/* <Profiler id="CartProvider" onRender={proCB} /> */}
             {children}
         </CartContext.Provider>
     )
+
+
 }
 
 
@@ -68,12 +120,18 @@ const Cart = ({ cartData }) => {
     // console.log("CartContext - Cart - cartData", cartData);
     const [show, setShow] = useState(false);
     const handleOnMouseEnter = () => {
+        if (numberOfItems < 1) return;
         setShow(true);
     }
     const handleOnMouseLeave = () => {
         setShow(false);
     }
     const ref = useRef(null);
+
+    const removeItemFromCart = (item) => {
+        cartData.removeFromCart({ id: item._id });
+        handleOnMouseLeave();
+    }
     return (
         // <Profiler id="CartContext-Cart" onRender={profilerCB}>
         <OverlayTrigger
@@ -86,7 +144,7 @@ const Cart = ({ cartData }) => {
                 <Popover id={`popover-positioned-bottom`} onMouseEnter={handleOnMouseEnter} onMouseLeave={handleOnMouseLeave}>
                     <Popover.Header as="h4">Cart Items</Popover.Header>
                     <Popover.Body>
-                        <CartItemListHover cartData={cartData} />
+                        <CartItemListHover cartData={cartData} removeItemFromCart={removeItemFromCart} />
                     </Popover.Body>
                 </Popover>
             }
