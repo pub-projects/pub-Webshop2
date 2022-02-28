@@ -110,7 +110,8 @@ export const ProductPage = () => {
     }
 
     return (
-        <ProductsContext>
+        // <ProductsContext>
+        <>
             <Profiler id="ProductPage" onRender={proCB} />
             <ProductConsumer>{(products) => {
                 const product = products.find(item => item._id === id);
@@ -125,6 +126,7 @@ export const ProductPage = () => {
                 );
             }}
             </ProductConsumer>
-        </ProductsContext>
+        </>
+        // </ProductsContext>
     );
 }
