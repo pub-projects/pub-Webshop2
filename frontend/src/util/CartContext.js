@@ -75,14 +75,16 @@ const CartProvider = ({ children }) => {
         }
     }
 
-    const updateCartItemQuantity = (cartItem, qty) => {
-        cartItem.qty = qty;
+    const updateCartItemQuantity = (cartItem) => {
+        console.log("CartProvider - updateCartItemQuantity cartItem", cartItem);
+        console.log("CartProvider - updateCartItemQuantity cart", cart);
         const tmpCart = cart;
         let indx;
         if (_itemInCart(cartItem)) {
             indx = _findIndex(cartItem);
             tmpCart.splice(indx, 1, cartItem);
             setCart(tmpCart);
+            console.log("CartProvider - updateCartItemQuantity tmpCart", tmpCart);
             sessionStorage.setItem('cart', JSON.stringify(tmpCart));
         }
     }
@@ -107,7 +109,6 @@ const CartConsumer = ({ children }) => {
     return (
         <><Profiler id="CartConsumer" onRender={proCB} />
             <CartContext.Consumer>
-
                 {children}
             </CartContext.Consumer>
         </>
@@ -129,6 +130,7 @@ const Cart = ({ cartData }) => {
     const ref = useRef(null);
 
     const removeItemFromCart = (item) => {
+        console.log("CartContext - Cart - item", item);
         cartData.removeFromCart({ id: item._id });
         handleOnMouseLeave();
     }
