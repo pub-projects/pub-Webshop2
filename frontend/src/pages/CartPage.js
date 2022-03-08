@@ -1,10 +1,18 @@
 import { Profiler, proCB } from '../util/Profiler';
+import { CartConsumer } from '../util/CartContext';
+import { CartItem } from '../components/CartItemListHover';
 
 export const CartPage = () => {
     return (
-        <div className="cart-page-wrapper">
+        <CartConsumer>
             <Profiler id="CartPage" onRender={proCB} />
-            CartPage
-        </div>
+            {(cartItems) => (
+                <div className="cart-page-wrapper">
+                    {cartItems.map((item) => {
+                        return <CartItem cart={item} />
+                    })}
+                </div>
+            )}
+        </CartConsumer>
     )
 }
