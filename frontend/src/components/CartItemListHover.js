@@ -4,15 +4,27 @@ import { Profiler, proCB } from '../util/Profiler';
 import { DisplayPrice } from './DisplayPrice';
 
 export const CartItemListHover = ({ cartData, removeItemFromCart }) => {
-    console.log("CartItemListHover cartData", cartData);
-    const [cartTotalAmout, setCartTotalAmount] = useState(0);
+    // console.log("CartItemListHover cartData", cartData);
+    console.log("CartItemListHover storage:", sessionStorage.getItem("cartTotalAmount"));
+    let _totalAmount = Number(sessionStorage.getItem("cartTotalAmount") ? sessionStorage.getItem("cartTotalAmount") : 0);
+
+
     const addToCartTotalAmount = (amount => {
-        let tmp = amount + cartTotalAmout;;
-        setCartTotalAmount(tmp);
+        console.log("CartItemListHover - addToCartTotalAmount B4:", _totalAmount);
+        _totalAmount += Number(amount);
+        sessionStorage.setItem("cartTotalAmount", _totalAmount);
+        console.log("CartItemListHover - addToCartTotalAmount after:", _totalAmount);
     });
+
+    const calculateTotalAmount = () => {
+        if (!cartData.cart) return;
+        for (let i = 0; i < cartData.cart.length; i++) {
+            //cartdata.cart[i]
+        }
+    }
+
     let product;
     const bundle = {};
-    bundle.addToTotal = addToCartTotalAmount;
     bundle.removeFromCart = removeItemFromCart;
     bundle.cartData = cartData;
     bundle.cartTotal = 0;
@@ -21,33 +33,50 @@ export const CartItemListHover = ({ cartData, removeItemFromCart }) => {
     if (!cartData.cart || cartData.cart.length < 1) return <div></div>;
 
     return (
-        <><Profiler id="CartItemListHover" onRender={proCB} />
+        <>
+            <Profiler id="CartItemListHover" onRender={proCB} />
             <ProductConsumer>{(products) => (
                 cartData.cart.map(item => {
-                    //bundle.cart = item;
                     product = products.find(({ _id }) => _id === item.id)
+                    addToCartTotalAmount(Number(item.qty) * Number(product.price))
+                    console.log("_totalAmount", _totalAmount);
                     return (
                         <CartItem key={item.id} bundle={bundle} cart={item} product={product} />
                     )
                 })
-
             )}
             </ProductConsumer>
+            {/* <div className="cart-total-wrapper">
+                {console.log("cart-total-wrapper")}
+                <div className="cart-total-amount">
+                    Cart amount: &nbsp;
+                    <span className="total-amount"><DisplayPrice displayStyle='regular' price={_totalAmount} /></span>
+                </div>
+                <div className="cart-item-qty cart-item hidden"><input className="input-qty" /></div>
+                <div className="cart-item-delete cart-item hidden"><button className="material-icons cart-item-delete-icon" onClick={e => bundle.removeFromCart(product)}>remove_circle</button></div>
+            </div> */}
+            <div className="goto-button">
+                <a href="/cart">
+                    <input
+                        type="button"
+                        className="btn-style add-to-cart-btn-style"
+                        value="Go to Cart"
+                    />
+                </a>
+            </div>
         </>
     );
 }
 
 
-const CartItem = ({ bundle, cart, product }) => {
-    console.log("CartItem - bundle", bundle);
-    console.log("CartItem - cart", cart);
-    console.log("CartItem - product", product);
+export const CartItem = ({ bundle, cart, product }) => {
+    // console.log("CartItem - bundle", bundle);
+    // console.log("CartItem - cart", cart);
+    // console.log("CartItem - product", product);
     const urlImageBase = "/api/images/";
     const [qty, setQty] = useState(cart.qty);
     const name = product.name.substring(0, 25);
 
-    //bundle.addToTotal(qty * bundle.product.price);
-    // bundle.cart.qty += qty * product.price;
     const updateQty = (qty) => {
         setQty(qty);
         const tmpItem = { id: product._id, qty: qty };

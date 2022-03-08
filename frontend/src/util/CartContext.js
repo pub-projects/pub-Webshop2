@@ -126,6 +126,7 @@ const Cart = ({ cartData }) => {
     }
     const handleOnMouseLeave = () => {
         setShow(false);
+        sessionStorage.removeItem('cartTotalAmount');
     }
     const ref = useRef(null);
 
