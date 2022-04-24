@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Modal, Col, Row } from 'react-bootstrap';
-import { ProductConsumer, ProductsContext } from '../util/ProductsContext';
+import { ProductConsumer } from '../util/ProductsContext';
 import { useParams } from 'react-router-dom';
 import { StarRating } from '../components/StarRating';
 import { DisplayPrice } from '../components/DisplayPrice';
@@ -67,7 +67,7 @@ export const ProductPage = () => {
                             <BuyItem product={product} />
                         </div>
                     </div>
-                    <Row className="g-0">
+                    <Row className="g-0 card-body">
                         <Col md={{ span: 6, offset: 3 }}>
 
                             <p style={{ fontWeight: "700" }}>About this item</p>

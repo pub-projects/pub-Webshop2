@@ -1,0 +1,16 @@
+{
+    "id": "62613a1ea3943d412cfa159e",
+    "isVerified": true,
+    "userName": "orangeostrich767",
+    "email": {
+        "emailaddress": "firmino.moreira@example.com",
+        "isVerified": true
+    },
+    "name": {
+        "title": "Mr",
+        "first": "Firmino",
+        "last": "Moreira"
+    },
+    "iat": 1650712298,
+    "exp": 1650885098
+}

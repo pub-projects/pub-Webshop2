@@ -4,14 +4,21 @@ import Nav from 'react-bootstrap/Nav';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { CartConsumer, Cart } from '../util/CartContext';
 import { Profiler, proCB } from '../util/Profiler';
+import { useToken } from '../auth/useToken';
+import { useState, useEffect } from 'react';
+import { useUser } from '../auth/useUser';
+import { UserConsumer } from '../util/UserContext';
+import { LoginMenu } from './LoginMenu';
 
 
 
 export const MainNavBar = () => {
-    return (
+    const user = useUser();
+    const [, setToken] = useToken();
 
+    return (
         <nav className="nav-wrapper">
-            <Profiler id="MainNavigationBar" onRender={proCB} />
+            <Profiler id="MainNav" onRender={proCB} />
             <Navbar bg="light" expand="sm">
                 <Container className="container-fluid">
                     <Navbar.Brand href="#home">Web Shop Project</Navbar.Brand>
@@ -31,10 +38,7 @@ export const MainNavBar = () => {
                     </Navbar.Collapse>
                 </Container>
             </Navbar>
-            <div className="login">
-                <a href="/login">Login</a>
-                <a href="/sign-up">Sign Up</a>
-            </div>
+            <LoginMenu />
             <CartConsumer>
                 {(cartData) => (
                     <>

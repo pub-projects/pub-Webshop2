@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import Nav from 'react-bootstrap/Nav';
 import { CartItemListHover } from '../components/CartItemListHover';
 import { OverlayTrigger, Popover } from 'react-bootstrap';
-import { Profiler, proCB } from '../util/Profiler';
+import { Profiler, proCB } from './Profiler';
 
 
 const CartContext = React.createContext();
