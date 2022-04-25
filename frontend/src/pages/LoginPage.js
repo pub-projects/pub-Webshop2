@@ -27,6 +27,7 @@ const LoginPage = () => {
         // Remember to use useEffect when setting the setToken
         // to re-direct the page after the token is updated.
         console.log("LoginPage - useEffect");
+        // Navigate to the page viewed before login.
         if (token) navigate(-1, { replace: true });
     }, [token, navigate])
 
