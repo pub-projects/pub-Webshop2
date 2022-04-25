@@ -3,7 +3,7 @@ import { Home } from '../pages/HomePage';
 import { SearchLandingPage } from '../pages/SearchLandingPage';
 import { ProductPage } from '../pages/ProductPage';
 import { CartPage } from '../pages/CartPage';
-import { LoginPage, LogOut } from '../pages/LoginPage';
+import { LoginPage } from '../pages/LoginPage';
 import { ForgotPasswordPage } from '../pages/ForgotPasswordPage';
 import { SignUpPage } from '../pages/SignUpPage';
 
@@ -23,7 +23,6 @@ export const Routing = () => {
                     <Route path="/login" element={<LoginPage />} />
                     <Route path="/signup" element={<SignUpPage />} />
                     <Route path="/resetpassword" element={<ForgotPasswordPage />} />
-                    <Route path="/logout" element={<LogOut />} />
                 </Routes>
             </Router>
         </ErrorBoundary>

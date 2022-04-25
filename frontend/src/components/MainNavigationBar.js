@@ -7,14 +7,11 @@ import { Profiler, proCB } from '../util/Profiler';
 import { useToken } from '../auth/useToken';
 import { useState, useEffect } from 'react';
 import { useUser } from '../auth/useUser';
-import { UserConsumer } from '../util/UserContext';
 import { LoginMenu } from './LoginMenu';
 
 
 
 export const MainNavBar = () => {
-    const user = useUser();
-    const [, setToken] = useToken();
 
     return (
         <nav className="nav-wrapper">

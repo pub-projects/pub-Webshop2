@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router';
 import { useToken } from '../auth/useToken';
-import { useUser } from '../auth/useUser';
 import { useQueryParams } from '../util/useQueryParams';
 import axios from 'axios';
 
@@ -22,16 +21,19 @@ const LoginPage = () => {
             setToken(oauthToken);
             navigate('/');
         }
-        if (token) navigate('/');
-    }, [oauthToken, setToken, navigate, token]);
+    }, [oauthToken, navigate, setToken]);
+
+    useEffect(() => {
+        // Remember to use useEffect when setting the setToken
+        // to re-direct the page after the token is updated.
+        console.log("LoginPage - useEffect");
+        if (token) navigate(-1, { replace: true });
+    }, [token, navigate])
 
     const handleLogin = async (ev) => {
-        console.log("handleLogin");
-        // ev.preventDefault(); // 
-        /**
-         * Not using preventDefault will cause the page and menu to 
-         * reload and display the username and user menu
-         */
+        console.log("handleLogin - email + password:", email + " : " + pword);
+        ev.preventDefault();
+
         try {
             const response = await axios.post('api/login', {
                 email: email,
@@ -75,18 +77,4 @@ const LoginPage = () => {
     );
 }
 
-const LogOut = () => {
-    const [token, setToken] = useToken();
-    const navigate = useNavigate();
-    console.log("LogOut");
-    if (token) setToken(false);
-
-    useEffect(() => {
-        console.log("useEffect");
-        if (!token) navigate('/');
-    }, [navigate, token]);
-
-    return (<>{token}</>);
-}
-
-export { LoginPage, LogOut };
+export { LoginPage };
