@@ -1,0 +1,48 @@
+.cart {
+  position: relative;
+  color: rgb(230, 149, 0);
+}
+.cart-icon {
+  font-size: 2.5rem;
+}
+.cart-items {
+  position: absolute;
+  color: black;
+  font-weight: 700;
+  font-size: 1rem;
+  line-height: 0.9rem;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  text-align: center;
+  z-index: 100;
+}
+.cart-wrapper {
+  padding-top: 1rem;
+  margin-left: 1rem;
+  margin-right: 0.5rem;
+  max-width: 24px;
+  max-height: 43px;
+}
+// Remove the padding in _navbar.scss Bootstrap.
+.nav-link {
+  padding: 0px;
+}
+
+.hover-items {
+  position: absolute;
+  z-index: 200;
+  width: min-content;
+  top: 2.5rem;
+  right: 0px;
+}
+
+.popover {
+  max-width: max-content;
+}
+.popover-header {
+  text-align: center;
+}
+.popover-body {
+  padding: 0.5rem;
+}

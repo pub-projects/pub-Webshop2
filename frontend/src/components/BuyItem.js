@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import { DisplayPrice } from './DisplayPrice';
 import { StarRating } from './StarRating';
-import { CartConsumer } from '../App';
+import { CartConsumer } from '../util/CartContext';
+import { Profiler, proCB } from '../util/Profiler';
 
 export const BuyItem = (props) => {
     const product = props.product;
@@ -11,21 +12,15 @@ export const BuyItem = (props) => {
 
     }
 
-    const handleAddToCartClick = () => {
-        const cartContent = localStorage.getItem("cart") ? JSON.parse(localStorage.getItem("cart")) : [];
-        cartContent.push({ id: product._id, qty: quantity });
-        localStorage.setItem("cart", JSON.stringify(cartContent));
-    }
-
     return (
         <CartConsumer>
             {(cartData) => (
                 < div className="card-body buy-item-wrapper" >
+                    <Profiler id="BuyItem" onRender={proCB} />
                     <div className="full-size-header">
                         <div>
                             {product.name}
                         </div>
-
                         <div className="price-wrapper" style={{ color: "red" }}>
                             <DisplayPrice
                                 price={product.price}
@@ -68,6 +63,6 @@ export const BuyItem = (props) => {
                     </div>
                 </div>
             )}
-        </CartConsumer >
+        </CartConsumer>
     )
 }

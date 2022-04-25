@@ -24,6 +24,7 @@ h6 {
   padding-right: 1em;
   min-height: 100vh;
   overflow-y: auto;
+  width: clamp(300px, 100%, 960px);
 }
 .siteWrapper {
   min-height: 100vh;

@@ -2,10 +2,23 @@ import Navbar from 'react-bootstrap/Navbar';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import { CartConsumer, Cart } from '../util/CartContext';
+import { Profiler, proCB } from '../util/Profiler';
+import { useToken } from '../auth/useToken';
+import { useState, useEffect } from 'react';
+import { useUser } from '../auth/useUser';
+import { UserConsumer } from '../util/UserContext';
+import { LoginMenu } from './LoginMenu';
+
+
 
 export const MainNavBar = () => {
+    const user = useUser();
+    const [, setToken] = useToken();
+
     return (
         <nav className="nav-wrapper">
+            <Profiler id="MainNav" onRender={proCB} />
             <Navbar bg="light" expand="sm">
                 <Container className="container-fluid">
                     <Navbar.Brand href="#home">Web Shop Project</Navbar.Brand>
@@ -25,15 +38,21 @@ export const MainNavBar = () => {
                     </Navbar.Collapse>
                 </Container>
             </Navbar>
-            <div className="login">
-                <a href="/login">Login</a>
-                <a href="/sign-up">Sign Up</a>
-            </div>
-            <div className="cart">
-                <span className="material-icons-outlined cart">
-                    shopping_cart
-                </span>
-            </div>
+            <LoginMenu />
+            <CartConsumer>
+                {(cartData) => (
+                    <>
+                        {/* {console.log("MainNavigationBar - CartConsumer - cart", cartData.cart)} */}
+                        <Profiler id="MainNav - CartConsumer" onRender={proCB} />
+                        <Cart cartData={
+                            cartData.cart
+                                ? cartData
+                                : []
+
+                        } />
+                    </>
+                )}
+            </CartConsumer>
         </nav>
     );
 };

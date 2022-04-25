@@ -1,4 +1,5 @@
 import React from 'react';
+import { Profiler, proCB } from '../util/Profiler';
 
 export const DisplayPrice = (props) => {
     const priceSection = props.price.toString().split(".");
@@ -14,7 +15,7 @@ export const DisplayPrice = (props) => {
 
     let price = "";
     switch (props.displayStyle) {
-        case "regular": price = <p className="text-danger">{numberFormat(Number(props.price))}</p>;
+        case "regular": price = <>{numberFormat(Number(props.price))}</>;
             break;
         case "amazon": price = props.symbolPlacement === "pre" ? <p><span className="smaller">{props.symbol}</span><span className="normal">{wholePart}</span><span className="smaller">{fractionPart}</span></p> : <p><span className="normal">{wholePart}</span><span className="smaller">{fractionPart}</span><span className="normal">{props.symbol}</span></p>;
             break;
@@ -27,3 +28,4 @@ export const DisplayPrice = (props) => {
         <>{price}</>
     );
 }
+{/* <Profiler id="DisplayPrice" onRender={proCB} /> */ }

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { ProgressBar } from './ProgressBar';
+import { Profiler, proCB } from '../util/Profiler';
 
 /*
     Trying to use stars in the detailed view of StarRating didn't turn out good. 
@@ -16,6 +17,7 @@ const RatingDetail = (props) => {
     return (
         // <><div className="stars" style={style} aria-label={label}>{props.star + 1} : </div><div>{Math.round((props.votes / props.totalVotes) * 100)}%</div></>
         <div className="star-rating">
+            {/* <Profiler id="RatingDetail" onRender={proCB} /> */}
             <ProgressBar pre_text={barPreText} post_text={barPostText} percent={rating} color="gold" />
             <span className="float-right"></span>
         </div>
@@ -67,6 +69,7 @@ export const StarRating = (props) => {
             onMouseEnter={() => { mouseEnter() }}
             onMouseLeave={() => { mouseLeave() }}
         >
+            {/* <Profiler id="StarRating" onRender={proCB} /> */}
             <div
                 className="stars-before"
                 aria-label={label}

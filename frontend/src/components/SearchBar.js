@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Profiler, proCB } from '../util/Profiler';
 
 export const SearchBar = () => {
     //console.log("search bar");
@@ -13,6 +14,7 @@ export const SearchBar = () => {
 
     return (
         <form className="d-flex mx-2 mb-4 px-5">
+            <Profiler id="SearchBar" onRender={proCB} />
             <input className="form-control me-2"
                 onChange={e => setSearchWord(e.target.value)}
                 value={searchWord}
