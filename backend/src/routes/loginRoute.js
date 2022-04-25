@@ -13,7 +13,7 @@ export const login = {
     method: 'post',
     handler: async (req, res) => {
         const { email, password } = req.body;
-        console.log("loginRoute", email + " : " + password);
+        // console.log("loginRoute", email + " : " + password);
         try {
             const db = await getDbConnection('Webshop2');
             //console.log("db", db);
@@ -23,7 +23,7 @@ export const login = {
             if (!user) return res.sendStatus(401);
 
             const { _id: id, name, email, login } = user;
-            console.log("loginRoute - md5 salt", login.md5 + " : " + login.salt);
+            // console.log("loginRoute - md5 salt", login.md5 + " : " + login.salt);
 
             const isCorrectPassword = compare(md5(password + login.salt).toString(), login.md5);
             const isVerified = email.isVerified;
