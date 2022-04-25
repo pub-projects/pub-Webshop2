@@ -24,10 +24,5 @@ const useUser = () => {
 
     return user;
 }
-const useLogOut = () => {
-    console.log("useLogOut");
-    const [token, setToken] = useToken();
-    if (token) setToken(null);
-}
 
-export { useUser, useLogOut };
+export { useUser };
