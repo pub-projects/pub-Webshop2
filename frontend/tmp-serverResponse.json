@@ -1,16 +1,41 @@
 {
     "id": "62613a1ea3943d412cfa159e",
-    "isVerified": true,
-    "userName": "orangeostrich767",
-    "email": {
-        "emailaddress": "firmino.moreira@example.com",
-        "isVerified": true
-    },
     "name": {
         "title": "Mr",
         "first": "Firmino",
         "last": "Moreira"
     },
-    "iat": 1650712298,
-    "exp": 1650885098
+    "email": {
+        "emailaddress": "firmino.moreira@example.com",
+        "isVerified": true
+    },
+    "location": {
+        "street": {
+            "number": 6829,
+            "name": "Rua Boa Vista "
+        },
+        "city": "Gravataí",
+        "state": "Amapá",
+        "country": "Brazil",
+        "postcode": 43009,
+        "coordinates": {
+            "latitude": "-77.3419",
+            "longitude": "-155.7732"
+        },
+        "timezone": {
+            "offset": "+10:00",
+            "description": "Eastern Australia, Guam, Vladivostok"
+        }
+    },
+    "userName": "orangeostrich767",
+    "phone": "(47) 0144-3537",
+    "cell": "(54) 4731-7526",
+    "picture": {
+        "large": "https://randomuser.me/api/portraits/men/24.jpg",
+        "medium": "https://randomuser.me/api/portraits/med/men/24.jpg",
+        "thumbnail": "https://randomuser.me/api/portraits/thumb/men/24.jpg"
+    },
+    "lastUpdated": "2022-04-26T10:57:33.365Z",
+    "iat": 1650964378,
+    "exp": 1651137178
 }

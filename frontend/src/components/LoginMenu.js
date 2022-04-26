@@ -19,7 +19,7 @@ const LoginMenu = () => {
             ? <div className="login">
                 <Profiler id="LoginMenu - Loged in" onRender={proCB} />
                 <NavDropdown title={userName} id="basic-nav-dropdown">
-                    <NavDropdown.Item href="#action/3.1">Profile</NavDropdown.Item>
+                    <NavDropdown.Item href="/userprofile">Profile</NavDropdown.Item>
                     <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
                     <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
                     <NavDropdown.Divider />
