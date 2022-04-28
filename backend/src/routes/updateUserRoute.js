@@ -1,7 +1,7 @@
 import { getDbConnection } from '../db';
 
-export const updateUserProfile = {
-    path: '/api/users/updateProfile/:id',
+export const updateUser = {
+    path: '/api/users/update/:id',
     method: 'post',
     handler: async (req, res) => {
         const { authorization } = req.headers;

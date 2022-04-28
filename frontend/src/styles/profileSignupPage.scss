@@ -1,3 +1,10 @@
+/**
+  Using the same stylesheet for both Profile page and Signup page.
+*/
+
+.infoText {
+  font-size: 0.6rem;
+}
 .profileWrapper {
   display: flex;
   flex-direction: column;
@@ -26,9 +33,9 @@
 .profileContent form > input + input {
   margin-left: 0.5rem;
 }
-.profileContent > section {
-  //   flex: 1;
-}
+// .profileContent > section {
+//   //   flex: 1;
+// }
 .profileContent > section:nth-of-type(2) {
   //   flex: 2;
   padding-left: 1rem;
@@ -43,8 +50,8 @@
 .profileSection form {
   width: fit-content;
 }
-.profileSection > form .section:first-child {
-  border-top: 1px solid silver;
+.group + .group {
+  margin-top: 1rem;
 }
 .profileSection > form {
   margin-top: 1.3rem;

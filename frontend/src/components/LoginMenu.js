@@ -29,7 +29,7 @@ const LoginMenu = () => {
             : <div className="login">
                 <Profiler id="LoginManu - Login" onRender={proCB} />
                 <a href="/login">Login</a>
-                <a href="/sign-up">Sign Up</a>
+                <a href="/signup">Sign Up</a>
             </div>
     );
 }
