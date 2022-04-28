@@ -5,7 +5,7 @@ import { ProductPage } from '../pages/ProductPage';
 import { CartPage } from '../pages/CartPage';
 import { LoginPage } from '../pages/LoginPage';
 import { ForgotPasswordPage } from '../pages/ForgotPasswordPage';
-import { SignUpPage } from '../pages/SignUpPage';
+import { SignupPage } from '../pages/SignupPage';
 import { ProfilePage } from '../pages/ProfilePage';
 
 import ErrorBoundary from './ErrorBoundary';
@@ -22,7 +22,7 @@ export const Routing = () => {
                     <Route path="/product-page/:id" element={<ProductPage />} />
                     <Route path="/cart" element={<CartPage />} />
                     <Route path="/login" element={<LoginPage />} />
-                    <Route path="/signup" element={<SignUpPage />} />
+                    <Route path="/signup" element={<SignupPage />} />
                     <Route path="/resetpassword" element={<ForgotPasswordPage />} />
                     <Route path="/userprofile" element={<ProfilePage />} />
                 </Routes>

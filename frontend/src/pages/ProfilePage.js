@@ -3,7 +3,6 @@ import { useState, useEffect } from 'react';
 
 const ProfilePage = () => {
     const user = useUser();
-    const [imageUrl, setImageUrl] = useState(user.picture.medium);
     const [userName, setUserName] = useState(user.userName);
     const [title, setTitle] = useState(user.name.title);
     const [fname, setFname] = useState(user.name.first);
@@ -21,6 +20,7 @@ const ProfilePage = () => {
     const gravatarUrl = user.picture.medium;
 
     const resetUserName = () => {
+        console.log("resetFormData", userName);
         setUserName(user.userName);
     }
     const resetFormData = () => {
@@ -57,7 +57,6 @@ const ProfilePage = () => {
 
     }
 
-
     return (
         <div className="profileWrapper"><h2>User Profile</h2><h3>{userName}</h3>
             <div className="container profileContent" lang={lang}>
@@ -87,7 +86,7 @@ const ProfilePage = () => {
                         </form>
                     </div>
                     <form onSubmit={(ev) => handleUpdate(ev)}>
-                        <div className="section name">
+                        <div className="section name border-top">
                             <label>
                                 Title:<br />
                                 <input type="text" value={title} onChange={ev => setTitle(ev.target.value)} />
@@ -107,7 +106,7 @@ const ProfilePage = () => {
                             <div>
                                 <label>
                                     Email:<br />
-                                    <input type="text" value={email} onChange={ev => setEmail(ev.target.value)} />
+                                    <input type="email" value={email} onChange={ev => setEmail(ev.target.value)} />
                                 </label>
                             </div>
                         </div>
