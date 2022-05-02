@@ -10,15 +10,16 @@ const LoginMenu = () => {
     // console.log("LoginMenu 1 - user", user);
     const [, setToken] = useToken();
     // console.log("LoginMenu 2");
-    const userName = user && user.userName;
-    // console.log("LoginMenu 3 - userName", userName);
+    const username = user && user.username;
+    //  console.log("LoginMenu 3 - userName", username);
+
 
 
     return (
-        userName
+        username
             ? <div className="login">
                 <Profiler id="LoginMenu - Loged in" onRender={proCB} />
-                <NavDropdown title={userName} id="basic-nav-dropdown">
+                <NavDropdown title={username} id="basic-nav-dropdown">
                     <NavDropdown.Item href="/userprofile">Profile</NavDropdown.Item>
                     <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
                     <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>

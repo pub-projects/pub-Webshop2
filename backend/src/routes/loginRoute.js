@@ -12,23 +12,23 @@ export const login = {
     path: '/api/login',
     method: 'post',
     handler: async (req, res) => {
-        const { email, password } = req.body;
-        // console.log("loginRoute", email + " : " + password);
         try {
-            const db = await getDbConnection('Webshop2');
-            //console.log("db", db);
-            const user = await db.collection('Users').findOne({ 'email:emailaddress': email });
-            //console.log("user", user);
+            const { userEmail, password } = req.body;
+            console.log("loginRoute", userEmail + " : " + password);
+
+            const db = getDbConnection('Webshop2');
+            const user = await db.collection('Users').findOne({ "email.emailaddress": userEmail });
+            console.log("user", user);
 
             if (!user) return res.sendStatus(401);
 
-            const { _id: id, name, email, location, login, phone, cell, picture, lastUpdated, nat } = user;
-            console.log("loginRoute - location", location);
+            const { _id: id, name, location, email, login, dob, registered, phone, avatar, lang } = user;
+            // console.log("loginRoute - location", location);
 
             const isCorrectPassword = compare(md5(password + login.salt).toString(), login.md5);
-            const isVerified = email.isVerified;
-            const userName = login.username;
-            const userData = { id, name, email, location, userName, phone, cell, picture, lastUpdated, nat };
+            const username = login.username;
+            const updated = registered.updated;
+            const userData = { id, id, name, location, email, username, dob, updated, phone, avatar, lang };
 
             if (isCorrectPassword) {
                 jwt.sign(userData, process.env.JWT_SECRET, { expiresIn: '2d' }, (err, token) => {

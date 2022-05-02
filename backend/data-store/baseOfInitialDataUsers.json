@@ -27,6 +27,7 @@
         "login": {
             "uuid": "6afa2515-d3da-4efd-bc8a-baa37b136649",
             "username": "orangeostrich767",
+            "password": "ripper",
             "salt": "Zm2O38ZE",
             "md5": "35964b46644dbbbd9765fad352057220",
             "sha1": "b0dcd3ece66346648ca8138e94505f5bbe454f53",
@@ -85,6 +86,7 @@
         "login": {
             "uuid": "877b42b8-3a82-407f-b01e-3db9157b013e",
             "username": "bluewolf582",
+            "password": "attack",
             "salt": "2SKewDRd",
             "md5": "a744f3ef318697abb148fd98aeb2a646",
             "sha1": "bbf741aa68a079addfa5976ecc3cd9785bd5ef1c",
@@ -143,6 +145,7 @@
         "login": {
             "uuid": "e87111c5-5d87-49ee-a89d-73bddd0f7236",
             "username": "sadzebra825",
+            "password": "racers",
             "salt": "drVTg4Zj",
             "md5": "c92016d7b196e91cbb00d7f947474d99",
             "sha1": "fb6ae5c48c8b41a3ec24cd5ae080231e8298081a",
@@ -201,6 +204,7 @@
         "login": {
             "uuid": "8fad8dd9-6657-4b05-a535-526da69a4476",
             "username": "yellowfish727",
+            "password": "darkange",
             "salt": "f8zD1JCM",
             "md5": "338a4a0e31671e7feb9d8cda78c52faf",
             "sha1": "a117ddb37fd788b28675a2f3445268c4bbc66d43",
@@ -259,6 +263,7 @@
         "login": {
             "uuid": "c974a7ef-ee84-4701-9501-fa724fb92390",
             "username": "brownswan718",
+            "password": "miller1",
             "salt": "8mp1EVid",
             "md5": "4770a9581645af1df995552d0ecf986c",
             "sha1": "b74e752a9d74344cfa5bccf2947abaf37a45f2e8",
@@ -317,6 +322,7 @@
         "login": {
             "uuid": "acb8c84d-6a04-4eef-baba-03e84637e871",
             "username": "brownpanda202",
+            "password": "rocks",
             "salt": "Y2jWDPxm",
             "md5": "db92400dbe5634f40e69239c41258336",
             "sha1": "58392dc5e575d490600c130abfbcf1812ed96815",
@@ -375,6 +381,7 @@
         "login": {
             "uuid": "7c0d45a2-93d5-45e7-8a16-16fcc5267bf4",
             "username": "tinybutterfly145",
+            "password": "daisy1",
             "salt": "clvqhgk9",
             "md5": "d74518fd49487ba3f0c3ba1a2f869d16",
             "sha1": "9d57d6b0cd7b833edc46084b87a15bd4016c6a68",
@@ -433,6 +440,7 @@
         "login": {
             "uuid": "bbfcd47d-4992-4404-8b1e-d2bbfcf222bd",
             "username": "silvercat406",
+            "password": "cleaner",
             "salt": "7fDkqoUh",
             "md5": "09b82ff61c07b7529cd15a69ed052051",
             "sha1": "fd88b9d9514dd18a107d4c8d86606cf23362468d",
@@ -491,6 +499,7 @@
         "login": {
             "uuid": "3f77696b-a736-4f10-bfcf-b26c56fed1d6",
             "username": "redpanda474",
+            "password": "browning",
             "salt": "387ksoe6",
             "md5": "734b94a2b09214c4db2b915b5b51c830",
             "sha1": "bee54463944a9a8d81569c4bf6a13eaf91c1f7d0",
@@ -549,6 +558,7 @@
         "login": {
             "uuid": "851f67d9-794f-44b4-bd1b-dcdf5fb903f9",
             "username": "redmouse975",
+            "password": "beerman",
             "salt": "vluhJDcS",
             "md5": "3c5fabc793be1edead701ac74f3722dd",
             "sha1": "dbeb48588300692db0f5fe912c53927f7de4f1b6",

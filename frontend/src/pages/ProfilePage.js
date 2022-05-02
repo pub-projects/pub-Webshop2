@@ -1,13 +1,19 @@
 import { useUser } from '../auth/useUser';
 import { useState, useEffect } from 'react';
+import { PhoneNumberList } from '../components/PhoneNumberList';
+import { EmailList } from '../components/EmailList';
 
 const ProfilePage = () => {
     const user = useUser();
-    const [userName, setUserName] = useState(user.userName);
+    const id = user.id;
+    const [gender, setGender] = useState(user.gender);
+    const [username, setUsername] = useState(user.username);
     const [title, setTitle] = useState(user.name.title);
     const [fname, setFname] = useState(user.name.first);
     const [lname, setLname] = useState(user.name.last);
-    const [email, setEmail] = useState(user.email.emailaddress);
+    const [email, setEmail] = useState(user.email);
+    const isVerified = user.email.isVerified;
+    const [birthday, setBirthday] = useState(user.dob.date);
     const [street, setStreet] = useState(user.location.street.name);
     const [streetNumber, setStreetNumber] = useState(user.location.street.number);
     const [city, setCity] = useState(user.location.city);
@@ -15,19 +21,25 @@ const ProfilePage = () => {
     const [country, setCountry] = useState(user.location.country);
     const [postcode, setPostcode] = useState(user.location.postcode);
     const [phone, setPhone] = useState(user.phone);
-    const [cell, setCell] = useState(user.cell);
-    const [lang,] = useState(user.nat.toLowerCase());
-    const gravatarUrl = user.picture.medium;
+    const lastUpdated = user.updated.split("T")[0];
+    const [lang,] = useState(user.lang);
+    const [avatarUrl, setAvatarUrl] = useState(user.avatar);
+
+    // console.log("profilepage", user);
 
     const resetUserName = () => {
-        console.log("resetFormData", userName);
-        setUserName(user.userName);
+        console.log("resetFormData", username);
+        setUsername(user.username);
     }
+
     const resetFormData = () => {
+        console.log("reset page");
+        setGender(user.gender);
         setTitle(user.name.title);
         setFname(user.name.first);
         setLname(user.name.last);
-        setEmail(user.email.emailaddress);
+        setEmail(user.email);
+        setBirthday(user.dob.date);
         setStreet(user.location.street.name);
         setStreetNumber(user.location.street.number);
         setCity(user.location.city);
@@ -35,16 +47,34 @@ const ProfilePage = () => {
         setCountry(user.location.country);
         setPostcode(user.location.postcode);
         setPhone(user.phone);
-        setCell(user.cell);
     }
+
     const updateUserName = (ev) => {
         ev.preventDefault();
-        console.log("updateUserName", userName);
+        // console.log("updateUserName", username);
         // code to send new userName to server.
         return false;
     }
+
     const handleUpdate = (ev) => {
         ev.preventDefault();
+        // Create a tmpUser and set all fields to current values then
+        // send to server and update the user.
+        const tmpUser = JSON.parse(JSON.stringify(user));
+        const name = { "title": title, "first": fname, "last": lname };
+        const tmpStreet = { "number": streetNumber, "name": street };
+        const location = { "street": tmpStreet, "city": city, "state": state, "country": country, "postcode": postcode, "timezone": user.location.timezone };
+
+        tmpUser.gender = gender;
+        tmpUser.username = username;
+        tmpUser.name = name;
+        tmpUser.email = email;
+        tmpUser.dob.date = birthday;
+        tmpUser.location = location;
+        tmpUser.phone = phone;
+        tmpUser.avatar = avatarUrl;
+
+        console.log("update", tmpUser);
 
         return false;
     }
@@ -58,12 +88,12 @@ const ProfilePage = () => {
     }
 
     return (
-        <div className="profileWrapper"><h2>User Profile</h2><h3>{userName}</h3>
+        <div className="profileWrapper"><h2>User Profile</h2><h3>{username}</h3>
             <div className="container profileContent" lang={lang}>
 
                 <section className="photoSection">
                     <div onClick={handleImageClick()}>
-                        <img src={gravatarUrl} width="100px" alt="Profile" />
+                        <img src={avatarUrl.medium} width="100px" alt="Profile" />
                     </div>
                     <input type="button" onClick={uploadImage()} value="Update image" />
                 </section>
@@ -73,12 +103,12 @@ const ProfilePage = () => {
                             <div>
                                 <label>Username:
                                     <br />
-                                    <input type="text" value={userName} onChange={ev => setUserName(ev.target.value)} />
+                                    <input type="text" value={username} onChange={ev => setUsername(ev.target.value)} />
                                 </label>
                                 <label>
                                     Last updated:
                                     <br />
-                                    <input type="text" value={user.lastUpdated.split('T')[0]} disabled={true} />
+                                    <input type="text" value={lastUpdated} disabled={true} />
                                 </label>
                             </div>
                             <input type="submit" value="Update" />
@@ -103,24 +133,10 @@ const ProfilePage = () => {
                             </div>
                         </div>
                         <div className="section email">
-                            <div>
-                                <label>
-                                    Email:<br />
-                                    <input type="email" value={email} onChange={ev => setEmail(ev.target.value)} />
-                                </label>
-                            </div>
+                            <EmailList email={email} setEmail={setEmail} />
                         </div>
                         <div className="section phone">
-                            <div>
-                                <label>
-                                    Phone:<br />
-                                    <input type="text" value={phone} onChange={ev => setPhone(ev.target.value)} />
-                                </label>
-                                <label>
-                                    Mobile:<br />
-                                    <input type="text" value={cell} onChange={ev => setCell(ev.target.value)} />
-                                </label>
-                            </div>
+                            <PhoneNumberList phone={phone} setPhone={setPhone} />
                         </div>
                         <div className="section address">
                             <div>

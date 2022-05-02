@@ -44,7 +44,7 @@ export const signup = {
             const { insertedId } = result;
             console.log("result", result);
 
-            const emailHTML = `<p>Dear ${title} ${first} ${last}</p><h2>Welcome to the Webshop</h2><p>We are delighted to have you here.</p><p>Before you can use your account you will need to verify your email by following this link <a href="https://localhost:3000/verifyemail/"+${uuid}>https://localhost:3000/verifyemail/${uuid}</a></p><br /><br /><p>Sincerely yours,<br />The Webshop Team</p>`;
+            const emailHTML = `<h2>Welcome to the Webshop</h2><p>Dear ${title} ${first} ${last}</p><p>We are delighted to have you here.</p><p>Before you can use your account you will need to verify your email by following this link <a href="https://localhost:3000/verifyemail/"+${uuid}>https://localhost:3000/verifyemail/${uuid}</a></p><br /><p>Sincerely yours,<br />The Webshop Team</p>`;
 
             const mail = {
                 to: emailaddress,
@@ -56,12 +56,16 @@ export const signup = {
             const response = await sendEmail(mail);
 
             console.log("sendEmail response", response);
+            /* ***** Create the userObject to be sent ***** */
+            const location = { city: '', country: '', postcode: '', state: '', street: { name: '', number: '' } };
+            const name = { title, first, last };
+            const email = { emailaddress, isVerified: false };
+            const picture = { large: '', medium: '', thumbnail: '' };
+            const responseData = { id: insertedId, userName: username, email, location, name, picture, lang: '', lastUpdated };
+            console.log("signupRoute - responseData", responseData);
 
-            jwt.sign({
-                id: insertedId,
-                email: emailaddress,
-                isVerified: false
-            },
+            jwt.sign(
+                responseData,
                 process.env.JWT_SECRET,
                 {
                     expiresIn: '2d',
@@ -73,8 +77,6 @@ export const signup = {
                     res.status(200).json({ token });
                 }
             )
-
-
 
         } catch (err) {
             console.log("signupRoute - signup - error", err);

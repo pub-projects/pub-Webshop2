@@ -10,7 +10,7 @@ const ProductsContext = (props) => {
 
     useEffect(() => {
         // if (!products) {
-        console.log("ProductsContext - useEffect - products", products);
+        // console.log("ProductsContext - useEffect - products", products);
         const getData = async () => {
             console.log("ProductsContext - useEffect - getData");
             const data = await axios.get('/api/products/getProductList');
@@ -24,7 +24,7 @@ const ProductsContext = (props) => {
             : setProducts(JSON.parse(sessionStorage.getItem('products')));
 
         // }
-        console.log('context products', products);
+        // console.log('context products', products);
         // return sessionStorage.removeItem("products");
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);

@@ -7,6 +7,7 @@ import { LoginPage } from '../pages/LoginPage';
 import { ForgotPasswordPage } from '../pages/ForgotPasswordPage';
 import { SignupPage } from '../pages/SignupPage';
 import { ProfilePage } from '../pages/ProfilePage';
+import { VerifyEmailPage } from '../pages/VerifyEmailPage';
 
 import ErrorBoundary from './ErrorBoundary';
 import { Profiler, proCB } from '../util/Profiler';
@@ -25,6 +26,7 @@ export const Routing = () => {
                     <Route path="/signup" element={<SignupPage />} />
                     <Route path="/resetpassword" element={<ForgotPasswordPage />} />
                     <Route path="/userprofile" element={<ProfilePage />} />
+                    <Route path="/verifyemail" element={<VerifyEmailPage />} />
                 </Routes>
             </Router>
         </ErrorBoundary>

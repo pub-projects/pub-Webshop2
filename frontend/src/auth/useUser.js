@@ -17,7 +17,7 @@ const useUser = () => {
     }
     const getDataFromToken = token => {
         const encodedPayload = token.split('.',)[1];
-        console.log("useUser - getDataFromToken", encodedPayload)
+        // console.log("useUser - getDataFromToken", encodedPayload)
         return JSON.parse(b64DecodeUnicode(encodedPayload));
     }
 
@@ -31,14 +31,14 @@ const useUser = () => {
             setUser(null);
         } else {
             setUser(getDataFromToken(token));
-            console.log("useUser", getDataFromToken(token));
+            // console.log("useUser", getDataFromToken(token));
         }
     }, [token]);
 
     return user;
 }
 const useLogOut = () => {
-    console.log("useLogOut");
+    // console.log("useLogOut");
     const [token, setToken] = useToken();
     if (token) setToken(null);
 }

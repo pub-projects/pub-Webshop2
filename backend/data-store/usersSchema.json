@@ -1,0 +1,199 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "$id": "https://webshop2.com/users.schema.json",
+    "title": "Users",
+    "description": "Documents the details of a Webshop2 user",
+    "type": "object",
+    "properties": {
+        "_id": {
+            "type": "object",
+            "properties": {
+                "$oid": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "$oid"
+            ]
+        },
+        "login": {
+            "description": "Login details",
+            "type": "object",
+            "properties": {
+                "uuid": {
+                    "description": "Used for verification of email address",
+                    "type": "string"
+                },
+                "username": {
+                    "type": "string"
+                },
+                "salt": {
+                    "type": "string"
+                },
+                "md5": {
+                    "type": "string"
+                },
+                "sha1": {
+                    "type": "string"
+                },
+                "sha256": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "uuid",
+                "username",
+                "salt",
+                "md5",
+                "sha1",
+                "sha256"
+            ]
+        },
+        "name": {
+            "description": "All user name data",
+            "type": "object",
+            "properties": {
+                "title": {
+                    "type": "string"
+                },
+                "first": {
+                    "type": "string"
+                },
+                "last": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "first",
+                "last"
+            ]
+        },
+        "email": {
+            "description": "Email data and email verification",
+            "type": "array",
+            "items": {
+                "description": "A list of user's email addresses.",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "emailaddress": {
+                        "type": "string"
+                    },
+                    "isVerified": {
+                        "type": "boolean"
+                    }
+                },
+                "required": [
+                    "emailaddress",
+                    "isVerified"
+                ]
+            }
+        },
+        "location": {
+            "description": "Location data for user",
+            "type": "object",
+            "properties": {
+                "street": {
+                    "description": "Street data",
+                    "type": "object",
+                    "properties": {
+                        "name": {
+                            "description": "The name of the street",
+                            "type": "string"
+                        },
+                        "number": {
+                            "description": "The number if any also including letters for 10B etc.",
+                            "type": "string"
+                        }
+                    }
+                },
+                "city": {
+                    "type": "string"
+                },
+                "postcode": {
+                    "type": "string"
+                },
+                "state": {
+                    "type": "string"
+                },
+                "country": {
+                    "type": "string"
+                },
+                "timezone": {
+                    "description": "The offset from UTC time on the form +2:00, -4:30 etc.",
+                    "type": "string"
+                }
+            }
+        },
+        "dob": {
+            "description": "Date of birth and age",
+            "type": "object",
+            "properties": {
+                "date": {
+                    "type": "string"
+                },
+                "age": {
+                    "type": "number"
+                }
+            }
+        },
+        "registered": {
+            "description": "Dates for registration and latest update",
+            "type": "object",
+            "properties": {
+                "date": {
+                    "type": "string"
+                },
+                "updated": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "date",
+                "updated"
+            ]
+        },
+        "phone": {
+            "description": "A list of named telephone numbers for the user",
+            "type": "array",
+            "items": {
+                "description": "Name and telephone number",
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "number": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "avatar": {
+            "description": "Links to avatar images",
+            "type": "object",
+            "properties": {
+                "large": {
+                    "type": "string"
+                },
+                "medium": {
+                    "type": "string"
+                },
+                "thumbnail": {
+                    "type": "string"
+                }
+            }
+        },
+        "lang": {
+            "description": "The user's prefered language",
+            "type": "string"
+        }
+    },
+    "required": [
+        "login",
+        "name",
+        "email",
+        "registered"
+    ]
+}
