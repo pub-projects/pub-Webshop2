@@ -1,0 +1,220 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "type": "object",
+    "properties": {
+        "_id": {
+            "type": "object",
+            "properties": {
+                "$oid": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "$oid"
+            ]
+        },
+        "gender": {
+            "type": "string"
+        },
+        "name": {
+            "type": "object",
+            "properties": {
+                "title": {
+                    "type": "string"
+                },
+                "first": {
+                    "type": "string"
+                },
+                "last": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "title",
+                "first",
+                "last"
+            ]
+        },
+        "location": {
+            "type": "object",
+            "properties": {
+                "street": {
+                    "type": "object",
+                    "properties": {
+                        "number": {
+                            "type": "integer"
+                        },
+                        "name": {
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "number",
+                        "name"
+                    ]
+                },
+                "city": {
+                    "type": "string"
+                },
+                "state": {
+                    "type": "string"
+                },
+                "country": {
+                    "type": "string"
+                },
+                "postcode": {
+                    "type": "integer"
+                },
+                "timezone": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "street",
+                "city",
+                "state",
+                "country",
+                "postcode",
+                "timezone"
+            ]
+        },
+        "email": {
+            "type": "object",
+            "properties": {
+                "emailaddress": {
+                    "type": "string"
+                },
+                "isVerified": {
+                    "type": "boolean"
+                }
+            },
+            "required": [
+                "emailaddress",
+                "isVerified"
+            ]
+        },
+        "login": {
+            "type": "object",
+            "properties": {
+                "uuid": {
+                    "type": "string"
+                },
+                "username": {
+                    "type": "string"
+                },
+                "salt": {
+                    "type": "string"
+                },
+                "md5": {
+                    "type": "string"
+                },
+                "sha1": {
+                    "type": "string"
+                },
+                "sha256": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "uuid",
+                "username",
+                "salt",
+                "md5",
+                "sha1",
+                "sha256"
+            ]
+        },
+        "dob": {
+            "type": "object",
+            "properties": {
+                "date": {
+                    "type": "string"
+                },
+                "age": {
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "date",
+                "age"
+            ]
+        },
+        "registered": {
+            "type": "object",
+            "properties": {
+                "date": {
+                    "type": "string"
+                },
+                "updated": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "date",
+                "updated"
+            ]
+        },
+        "phone": {
+            "type": "array",
+            "items": [
+                {
+                    "type": "object",
+                    "properties": {
+                        "home": {
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "home"
+                    ]
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "mobile": {
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "mobile"
+                    ]
+                }
+            ]
+        },
+        "avatar": {
+            "type": "object",
+            "properties": {
+                "large": {
+                    "type": "string"
+                },
+                "medium": {
+                    "type": "string"
+                },
+                "thumbnail": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "large",
+                "medium",
+                "thumbnail"
+            ]
+        },
+        "lang": {
+            "type": "string"
+        }
+    },
+    "required": [
+        "_id",
+        "gender",
+        "name",
+        "location",
+        "email",
+        "login",
+        "dob",
+        "registered",
+        "phone",
+        "avatar",
+        "lang"
+    ]
+}

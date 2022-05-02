@@ -26,21 +26,21 @@ const LoginPage = () => {
     useEffect(() => {
         // Remember to use useEffect when setting the setToken
         // to re-direct the page after the token is updated.
-        console.log("LoginPage - useEffect");
+        // console.log("LoginPage - useEffect");
         // Navigate to the page viewed before login.
         if (token) navigate(-1, { replace: true });
     }, [token, navigate])
 
     const handleLogin = async (ev) => {
-        console.log("handleLogin - email + password:", email + " : " + pword);
+        // console.log("handleLogin - email + password:", email + " : " + pword);
         ev.preventDefault();
 
         try {
             const response = await axios.post('api/login', {
-                email: email,
+                userEmail: email,
                 password: pword
             });
-            console.log("response", response);
+            // console.log("response", response);
             const { token } = response.data;
             setToken(token);
         } catch (error) {

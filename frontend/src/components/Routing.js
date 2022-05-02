@@ -5,7 +5,9 @@ import { ProductPage } from '../pages/ProductPage';
 import { CartPage } from '../pages/CartPage';
 import { LoginPage } from '../pages/LoginPage';
 import { ForgotPasswordPage } from '../pages/ForgotPasswordPage';
-import { SignUpPage } from '../pages/SignUpPage';
+import { SignupPage } from '../pages/SignupPage';
+import { ProfilePage } from '../pages/ProfilePage';
+import { VerifyEmailPage } from '../pages/VerifyEmailPage';
 
 import ErrorBoundary from './ErrorBoundary';
 import { Profiler, proCB } from '../util/Profiler';
@@ -21,8 +23,10 @@ export const Routing = () => {
                     <Route path="/product-page/:id" element={<ProductPage />} />
                     <Route path="/cart" element={<CartPage />} />
                     <Route path="/login" element={<LoginPage />} />
-                    <Route path="/signup" element={<SignUpPage />} />
+                    <Route path="/signup" element={<SignupPage />} />
                     <Route path="/resetpassword" element={<ForgotPasswordPage />} />
+                    <Route path="/userprofile" element={<ProfilePage />} />
+                    <Route path="/verifyemail" element={<VerifyEmailPage />} />
                 </Routes>
             </Router>
         </ErrorBoundary>

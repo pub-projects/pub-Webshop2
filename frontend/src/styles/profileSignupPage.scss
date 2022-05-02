@@ -1,0 +1,77 @@
+/**
+  Using the same stylesheet for both Profile page and Signup page.
+*/
+
+.infoText {
+  font-size: 0.6rem;
+}
+.profileWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  padding: 3rem 0px;
+}
+
+.profileContent {
+  display: flex;
+  justify-content: space-evenly;
+  width: clamp(300px, 80%, 960px);
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 0 5px lightgrey;
+  padding: 1rem;
+}
+.profileContent label + label {
+  margin-left: 1rem;
+}
+.profileContent form > input {
+  margin-top: 0.5rem;
+  padding: 0px 0.5rem;
+}
+.profileContent form > input + input {
+  margin-left: 0.5rem;
+}
+// .profileContent > section {
+//   //   flex: 1;
+// }
+.profileContent > section:nth-of-type(2) {
+  //   flex: 2;
+  padding-left: 1rem;
+}
+
+.profileSection label + label,
+.profileSection .section + .section {
+  margin-top: 1rem;
+}
+.profileSection,
+.profileSection .section,
+.profileSection form {
+  width: fit-content;
+}
+.group + .group {
+  margin-top: 1rem;
+}
+.profileSection > form {
+  margin-top: 1.3rem;
+  padding-top: 0.3rem;
+}
+
+.photoSection {
+  padding-top: 3rem;
+  text-align: center;
+}
+.photoSection input {
+  margin-top: 0.8rem;
+  padding: 0 0.5rem;
+  border: none;
+  border-radius: 3px;
+  box-shadow: 1px 1px 3px grey;
+  font-size: 0.8rem;
+  color: royalblue;
+}
+
+.singleLabel {
+  margin-top: 1rem;
+}

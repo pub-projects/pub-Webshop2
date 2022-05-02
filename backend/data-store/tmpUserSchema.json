@@ -1,0 +1,64 @@
+USER MongoDB plan
+
+{
+    "_id": {
+        "$oid": "626f89ee3f33b4f01d6cabb8"
+    },
+    "gender": "male",
+    "name": {
+        "title": "Mr",
+        "first": "Firmino",
+        "last": "Moreira"
+    },
+    "location": {
+        "street": {
+            "number": 6829,
+            "name": "Rua Boa Vista "
+        },
+        "city": "Gravataí",
+        "state": "Amapá",
+        "country": "Brazil",
+        "postcode": 43009,
+        "timezone": "+10:00"
+    },
+    "email": [
+        {
+            "name": "private",
+            "emailaddress": "firmino.moreira@example.com",
+            "isVerified": true
+        }
+    ],
+    "login": {
+        /* The uuid is used for verification of email address */
+        "uuid": "6afa2515-d3da-4efd-bc8a-baa37b136649",
+        "username": "orangeostrich767",
+        "salt": "Zm2O38ZE",
+        "md5": "35964b46644dbbbd9765fad352057220",
+        "sha1": "b0dcd3ece66346648ca8138e94505f5bbe454f53",
+        "sha256": "19e69341856cd3d360b3ad8cd51b4cf489ee107614658be61b035cfb816e2da2"
+    },
+    "dob": {
+        "date": "1978-10-29",
+        "age": 44
+    },
+    "registered": {
+        "date": "2014-03-25T07:11:23.480Z",
+        "updated": "2022-04-26T10:57:33.365Z"
+    },
+    "phone": [
+        {
+            "name": "home",
+            "number": "(47) 0144-3537"
+        },
+        {
+            "name": "mobile",
+            "number": "(54) 4731-7526"
+        }
+    ],
+    "avatar": {
+        "large": "https://randomuser.me/api/portraits/men/24.jpg",
+        "medium": "https://randomuser.me/api/portraits/med/men/24.jpg",
+        "thumbnail": "https://randomuser.me/api/portraits/thumb/men/24.jpg"
+    },
+    "lang": "pt-BR"
+}
