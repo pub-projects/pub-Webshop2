@@ -12,28 +12,18 @@ export const login = {
     path: '/api/login',
     method: 'post',
     handler: async (req, res) => {
-<<<<<<< HEAD
-        const { email, password } = req.body;
-        // console.log("loginRoute", email + " : " + password);
-=======
->>>>>>> feature/signup
         try {
             const { userEmail, password } = req.body;
-            console.log("loginRoute", userEmail + " : " + password);
+            // console.log("loginRoute", userEmail + " : " + password);
 
             const db = getDbConnection('Webshop2');
             const user = await db.collection('Users').findOne({ "email.emailaddress": userEmail });
-            console.log("user", user);
+            // console.log("user", user);
 
             if (!user) return res.sendStatus(401);
 
-<<<<<<< HEAD
-            const { _id: id, name, email, login } = user;
-            // console.log("loginRoute - md5 salt", login.md5 + " : " + login.salt);
-=======
             const { _id: id, name, location, email, login, dob, registered, phone, avatar, lang } = user;
             // console.log("loginRoute - location", location);
->>>>>>> feature/signup
 
             const isCorrectPassword = compare(md5(password + login.salt).toString(), login.md5);
             const username = login.username;
