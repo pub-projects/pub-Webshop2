@@ -19,17 +19,10 @@ const LoginMenu = () => {
         username
             ? <div className="login">
                 <Profiler id="LoginMenu - Loged in" onRender={proCB} />
-<<<<<<< HEAD
-                <NavDropdown title={userName} id="basic-nav-dropdown">
-                    <NavDropdown.Item href="#action/3.1">Profile</NavDropdown.Item>
-                    <NavDropdown.Item href="#action/3.2">My Orders</NavDropdown.Item>
-                    <NavDropdown.Item href="#action/3.3">My Invoices</NavDropdown.Item>
-=======
                 <NavDropdown title={username} id="basic-nav-dropdown">
                     <NavDropdown.Item href="/userprofile">Profile</NavDropdown.Item>
                     <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
                     <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
->>>>>>> feature/signup
                     <NavDropdown.Divider />
                     <NavDropdown.Item href="/" onClick={() => { setToken(null) }}>Log out</NavDropdown.Item>
                 </NavDropdown>
