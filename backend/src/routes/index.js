@@ -5,6 +5,7 @@ import { login } from './loginRoute';
 import { updateUser } from './updateUserRoute';
 import { usernameExists } from './usernameExistsRoute';
 import { signup } from './signupRoute';
+import { updateUsername } from './updateUsernameRoute';
 import { testRoute } from './testRoute';
 
 export const routes = [
@@ -15,5 +16,6 @@ export const routes = [
     updateUser,
     usernameExists,
     signup,
+    updateUsername,
     testRoute,
 ];

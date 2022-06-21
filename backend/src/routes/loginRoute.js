@@ -14,11 +14,11 @@ export const login = {
     handler: async (req, res) => {
         try {
             const { userEmail, password } = req.body;
-            // console.log("loginRoute", userEmail + " : " + password);
+            console.log("loginRoute", userEmail + " : " + password);
 
             const db = getDbConnection('Webshop2');
             const user = await db.collection('Users').findOne({ "email.emailaddress": userEmail });
-            // console.log("user", user);
+            console.log("user", user);
 
             if (!user) return res.sendStatus(401);
 
@@ -28,7 +28,9 @@ export const login = {
             const isCorrectPassword = compare(md5(password + login.salt).toString(), login.md5);
             const username = login.username;
             const updated = registered.updated;
-            const userData = { id, id, name, location, email, username, dob, updated, phone, avatar, lang };
+            const userData = { id, name, location, email, username, dob, updated, phone, avatar, lang };
+
+            // console.log("Compare passwords", md5(password + login.salt).toString() + " : " + login);
 
             if (isCorrectPassword) {
                 jwt.sign(userData, process.env.JWT_SECRET, { expiresIn: '2d' }, (err, token) => {

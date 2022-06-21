@@ -20,6 +20,17 @@ const SignupPage = () => {
     const navigate = useNavigate();
     const [, setToken] = useToken();
 
+    useEffect(() => {
+        const script = document.createElement("script");
+        script.src = "../util/Helpers.js";
+        script.async = true;
+        document.body.append(script);
+
+        return () => {
+            document.body.remove(script);
+        }
+    }, [])
+
     const resetFormData = () => {
         setUserName('');
         setTitle('');

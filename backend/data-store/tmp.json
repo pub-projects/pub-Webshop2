@@ -1,0 +1,50 @@
+{
+    "id": "626f89ee3f33b4f01d6cabb8",
+    "name": {
+        "title": "Mr",
+        "first": "Firmino",
+        "last": "Moreira"
+    },
+    "location": {
+        "street": {
+            "number": 6829,
+            "name": "Rua Boa Vissla "
+        },
+        "city": "Gravataí",
+        "state": "Amapá",
+        "country": "Brasil",
+        "postcode": 43009,
+        "timezone": "+10:00"
+    },
+    "email": [
+        {
+            "name": "Private",
+            "emailaddress": "firmino.moreira@example.com",
+            "isVerified": true
+        }
+    ],
+    "username": "orangeostrich767",
+    "dob": {
+        "date": "1978-10-29",
+        "age": 44
+    },
+    "updated": "2022-04-26T10:57:33.365Z",
+    "phone": [
+        {
+            "name": "Home",
+            "number": "(47) 0144-3545"
+        },
+        {
+            "name": "Mobile",
+            "number": "(54) 4731-7526"
+        }
+    ],
+    "avatar": {
+        "large": "https://randomuser.me/api/portraits/men/24.jpg",
+        "medium": "https://randomuser.me/api/portraits/med/men/24.jpg",
+        "thumbnail": "https://randomuser.me/api/portraits/thumb/men/24.jpg"
+    },
+    "lang": "pt-BR",
+    "iat": 1651563857,
+    "exp": 1651736657
+}

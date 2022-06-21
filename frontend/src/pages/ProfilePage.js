@@ -2,6 +2,9 @@ import { useUser } from '../auth/useUser';
 import { useState, useEffect } from 'react';
 import { PhoneNumberList } from '../components/PhoneNumberList';
 import { EmailList } from '../components/EmailList';
+import axios from 'axios';
+import { useToken } from '../auth/useToken';
+import { useNavigate } from 'react-router';
 
 const ProfilePage = () => {
     const user = useUser();
@@ -24,8 +27,21 @@ const ProfilePage = () => {
     const lastUpdated = user.updated.split("T")[0];
     const [lang,] = useState(user.lang);
     const [avatarUrl, setAvatarUrl] = useState(user.avatar);
+    const [token, setToken] = useToken();
+    const navigate = useNavigate();
 
     // console.log("profilepage", user);
+
+    /*
+    Function b64EncodeUnicode code from 
+    https://stackoverflow.com/questions/30106476/using-javascripts-atob-to-decode-base64-doesnt-properly-decode-utf-8-strings
+    */
+    const b64EncodeUnicode = (str) => {
+        return window.btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g,
+            function toSolidBytes(match, p1) {
+                return String.fromCharCode('0x' + p1);
+            }));
+    }
 
     const resetUserName = () => {
         console.log("resetFormData", username);
@@ -49,17 +65,35 @@ const ProfilePage = () => {
         setPhone(user.phone);
     }
 
-    const updateUserName = (ev) => {
-        ev.preventDefault();
-        // console.log("updateUserName", username);
-        // code to send new userName to server.
+    const updateUserName = async (ev) => {
+        //ev.preventDefault();
+        const tmpUser = JSON.parse(JSON.stringify(user));
+
+        tmpUser.username = username;
+
+        console.log("update", tmpUser);
+        const data = b64EncodeUnicode(JSON.stringify(tmpUser));
+
+        try {
+            const response = await axios.put(`/api/users/update/username/${tmpUser.id}`, { data }, {
+                headers: { Authorization: `Bearer ${token}` }
+            });
+            const { token: newToken } = await response.data;
+            console.log("updated token", newToken);
+            setToken(newToken);
+            navigate('/userprofile');
+        } catch (err) {
+            console.log("ProfilePage - handleUpdate - error", err);
+        }
+
         return false;
     }
 
-    const handleUpdate = (ev) => {
+    const handleUpdate = async (ev) => {
         ev.preventDefault();
         // Create a tmpUser and set all fields to current values then
         // send to server and update the user.
+        // Deep copy.
         const tmpUser = JSON.parse(JSON.stringify(user));
         const name = { "title": title, "first": fname, "last": lname };
         const tmpStreet = { "number": streetNumber, "name": street };
@@ -75,6 +109,19 @@ const ProfilePage = () => {
         tmpUser.avatar = avatarUrl;
 
         console.log("update", tmpUser);
+        const data = b64EncodeUnicode(JSON.stringify(tmpUser));
+        console.log("checking data", data);
+        try {
+            const response = await axios.post(`/api/users/update/${tmpUser.id}`, { data }, {
+                headers: { Authorization: `Bearer ${token}` }
+            });
+            const { token: newToken } = await response.data;
+            console.log("updated token", newToken);
+            setToken(newToken);
+            navigate('/userprofile');
+        } catch (err) {
+            console.log("ProfilePage - handleUpdate - error", err);
+        }
 
         return false;
     }
@@ -111,7 +158,7 @@ const ProfilePage = () => {
                                     <input type="text" value={lastUpdated} disabled={true} />
                                 </label>
                             </div>
-                            <input type="submit" value="Update" />
+                            <input type="button" value="Update" onClick={(ev) => updateUserName(ev)} />
                             <input type="button" onClick={() => resetUserName()} value="Reset" />
                         </form>
                     </div>
