@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useToken } from './useToken';
 
-const useUser = () => {
-    const [token] = useToken();
+export const useUser = () => {
+    const [token, setToken] = useToken();
 
     /*
   Function b64EncodeUnicode code from 
@@ -26,6 +26,10 @@ const useUser = () => {
         return getDataFromToken(token);
     });
 
+    const updateUser = (newToken) => {
+        setToken(newToken);
+    }
+
     useEffect(() => {
         if (!token) {
             setUser(null);
@@ -33,14 +37,17 @@ const useUser = () => {
             setUser(getDataFromToken(token));
             // console.log("useUser", getDataFromToken(token));
         }
-    }, [token]);
+    }, [token, getDataFromToken]);
 
-    return user;
+    return [user, updateUser];
 }
+
+
+
 const useLogOut = () => {
     // console.log("useLogOut");
     const [token, setToken] = useToken();
     if (token) setToken(null);
 }
 
-export { useUser, useLogOut };
+export { useLogOut };

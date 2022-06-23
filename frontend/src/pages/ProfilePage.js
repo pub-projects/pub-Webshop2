@@ -7,10 +7,11 @@ import { useToken } from '../auth/useToken';
 import { useNavigate } from 'react-router';
 
 const ProfilePage = () => {
-    const user = useUser();
-    const id = user.id;
+    const [user, updateUser] = useUser();
+    console.log("user", user);
+    const id = user._id;
     const [gender, setGender] = useState(user.gender);
-    const [username, setUsername] = useState(user.username);
+    const [username, setUsername] = useState(user.login.username);
     const [title, setTitle] = useState(user.name.title);
     const [fname, setFname] = useState(user.name.first);
     const [lname, setLname] = useState(user.name.last);
@@ -24,7 +25,7 @@ const ProfilePage = () => {
     const [country, setCountry] = useState(user.location.country);
     const [postcode, setPostcode] = useState(user.location.postcode);
     const [phone, setPhone] = useState(user.phone);
-    const lastUpdated = user.updated.split("T")[0];
+    const lastUpdated = user.lastUpdated.split("T")[0];
     const [lang,] = useState(user.lang);
     const [avatarUrl, setAvatarUrl] = useState(user.avatar);
     const [token, setToken] = useToken();
@@ -75,13 +76,12 @@ const ProfilePage = () => {
         const data = b64EncodeUnicode(JSON.stringify(tmpUser));
 
         try {
-            const response = await axios.put(`/api/users/update/username/${tmpUser.id}`, { data }, {
+            const response = await axios.put(`/api/users/update/username/${tmpUser._id}`, { data }, {
                 headers: { Authorization: `Bearer ${token}` }
             });
             const { token: newToken } = await response.data;
             console.log("updated token", newToken);
-            setToken(newToken);
-            navigate('/userprofile');
+            updateUser(newToken);
         } catch (err) {
             console.log("ProfilePage - handleUpdate - error", err);
         }

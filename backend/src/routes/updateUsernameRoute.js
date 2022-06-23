@@ -2,6 +2,7 @@ import { getDbConnection } from '../db';
 import jwt from 'jsonwebtoken';
 import md5 from 'crypto-js/md5';
 import { ObjectId } from 'mongodb';
+import { userObjectToClientProjection as userProjection } from '../models/objectsAndClasses';
 
 export const updateUsername = {
     path: '/api/users/update/username/:userId',
@@ -11,31 +12,33 @@ export const updateUsername = {
         const { userId } = req.params;
 
         const buf = Buffer.from(req.body.data, 'base64');
+        //console.log("1 - buf", typeof buf + " : " + buf);
         const content = JSON.parse(buf.toString('utf8'));
-        // console.log("decoded-updates", updates)
+        //console.log("2 - content", typeof content + " : " + content)
 
-        // Extract resetFormData
-        const updates = ((
-            data
-        ) => (
-            data
+        // Create the const updates using an anonymous function and
+        //  passing in an argument, here content.
+        // The body of the function can operate on the supplied argument.
+        // The result will be a constant with the value determined by the 
+        //  functionality of the anonymous function.
+        const updates = ((data) => (
+            data.username || null
         ))(content);
+
+        console.log("3 - updates", typeof updates + " : " + updates);
 
         if (!authorization) {
             return res.status(401).json({ message: "Not authorized." });
         }
 
-        console.log("updateUsername", `${userId}`);
-
-        //res.status(200).json({ "authorization": authorization, "userId": userId });
         const token = authorization.split(' ')[1];
 
         jwt.verify(token, process.env.JWT_SECRET, async (err, decoded) => {
             if (err) return res.status(401).json({ message: "Unable to verify user." });
             // console.log("decoded", decoded);
-            const { id, email } = decoded;
+            const { _id, email } = decoded;
             // console.log("decoded email", email[0]);
-            if (id != userId) return res.status(403).json({ message: "Not allowed to update user data." });
+            if (_id != userId) return res.status(403).json({ message: "Not allowed to update user data." });
             if (!email[0].isVerified) return res.status(403).json({ message: "You need to verify your email address prior to gaining access." });
 
             const date = new Date();
@@ -45,37 +48,25 @@ export const updateUsername = {
                 // console.log("updateUserProfile");
                 const db = getDbConnection('Webshop2');
                 const o_id = new ObjectId(userId);// *** Important *** without ObjectId() mongodb doesn't find the _id
-                console.log("updates.username:", updates.username + " : " + o_id);
-                const result = await db.collection('Users').updateOne(
+                // console.log("updates.username:", updates.username + " : " + o_id);
+                const result = await db.collection('Users').findOneAndUpdate(
                     { '_id': o_id },
                     {
                         $set: {
                             lastUpdated: lastUpdated,
-                            'login.username': updates.username
+                            'login.username': updates
                             /** The correct way to only update login.usename field */
                         }
                     },
-                    { returnNewDocument: true }
+                    {
+                        projection: userProjection,
+                        returnDocument: 'after' // Return the updated document.
+                    }
                 );
                 console.log("result ", result);
-                console.log("id", userId);
-                const x_id = new ObjectId(userId);
-                const newUser = await db.collection('Users').findOne({ '_id': x_id });
-
-                console.log("newUser", newUser);
-
-                if (!newUser) return res.sendStatus(401);
-
-                const { _id: id, name, location, email, login, dob, registered, phone, avatar, lang } = newUser;
-                // console.log("loginRoute - location", location);
-
-                const username = login.username;
-                const updated = registered.updated;
-                const userData = { id, name, location, email, username, dob, updated, phone, avatar, lang };
-                //console.log("newUser:", newUser);
 
                 jwt.sign(
-                    userData,
+                    result.value,
                     process.env.JWT_SECRET,
                     {
                         expiresIn: '2d',

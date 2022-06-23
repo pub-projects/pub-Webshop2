@@ -1,50 +1,57 @@
 {
-    "id": "626f89ee3f33b4f01d6cabb8",
+    "_id": "626f89ee3f33b4f01d6cabb9",
+    "gender": "male",
     "name": {
         "title": "Mr",
-        "first": "Firmino",
-        "last": "Moreira"
+        "first": "Alex",
+        "last": "James"
     },
     "location": {
         "street": {
-            "number": 6829,
-            "name": "Rua Boa Vissla "
+            "number": 7016,
+            "name": "Broadway"
         },
-        "city": "Gravataí",
-        "state": "Amapá",
-        "country": "Brasil",
-        "postcode": 43009,
-        "timezone": "+10:00"
+        "city": "Birmingham",
+        "state": "Warwickshire",
+        "country": "United Kingdom",
+        "postcode": "MY5 4DZ",
+        "timezone": "+11:00"
     },
     "email": [
         {
             "name": "Private",
-            "emailaddress": "firmino.moreira@example.com",
+            "emailaddress": "alex.james@example.com",
             "isVerified": true
         }
     ],
-    "username": "orangeostrich767",
-    "dob": {
-        "date": "1978-10-29",
-        "age": 44
+    "login": {
+        "username": "bluewolf222"
     },
-    "updated": "2022-04-26T10:57:33.365Z",
+    "dob": {
+        "date": "1959-10-04",
+        "age": 63
+    },
+    "registered": {
+        "date": "2018-01-06T08:28:10.112Z",
+        "updated": "2022-04-26T10:57:33.365Z"
+    },
     "phone": [
         {
             "name": "Home",
-            "number": "(47) 0144-3545"
+            "number": "019467 08687"
         },
         {
             "name": "Mobile",
-            "number": "(54) 4731-7526"
+            "number": "0789-966-602"
         }
     ],
     "avatar": {
-        "large": "https://randomuser.me/api/portraits/men/24.jpg",
-        "medium": "https://randomuser.me/api/portraits/med/men/24.jpg",
-        "thumbnail": "https://randomuser.me/api/portraits/thumb/men/24.jpg"
+        "large": "https://randomuser.me/api/portraits/men/52.jpg",
+        "medium": "https://randomuser.me/api/portraits/med/men/52.jpg",
+        "thumbnail": "https://randomuser.me/api/portraits/thumb/men/52.jpg"
     },
-    "lang": "pt-BR",
-    "iat": 1651563857,
-    "exp": 1651736657
+    "lang": "en-GB",
+    "lastUpdated": "2022-06-22T15:21:46.645Z",
+    "iat": 1655911306,
+    "exp": 1656084106
 }

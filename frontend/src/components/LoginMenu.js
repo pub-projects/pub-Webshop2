@@ -6,14 +6,12 @@ import { useToken } from '../auth/useToken';
 
 const LoginMenu = () => {
     // console.log("LoginMenu 0");
-    const user = useUser();
+    const [user] = useUser();
     // console.log("LoginMenu 1 - user", user);
     const [, setToken] = useToken();
     // console.log("LoginMenu 2");
-    const username = user && user.username;
+    const username = user && user.login.username;
     //  console.log("LoginMenu 3 - userName", username);
-
-
 
     return (
         username

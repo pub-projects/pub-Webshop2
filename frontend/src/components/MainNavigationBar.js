@@ -45,7 +45,6 @@ export const MainNavBar = () => {
                             cartData.cart
                                 ? cartData
                                 : []
-
                         } />
                     </>
                 )}
