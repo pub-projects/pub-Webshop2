@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useToken } from './useToken';
 
 export const useUser = () => {
@@ -15,11 +15,11 @@ export const useUser = () => {
             return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
         }).join(''));
     }
-    const getDataFromToken = token => {
+    const getDataFromToken = useCallback(token => {
         const encodedPayload = token.split('.',)[1];
         // console.log("useUser - getDataFromToken", encodedPayload)
         return JSON.parse(b64DecodeUnicode(encodedPayload));
-    }
+    })
 
     const [user, setUser] = useState(() => {
         if (!token) return null;
