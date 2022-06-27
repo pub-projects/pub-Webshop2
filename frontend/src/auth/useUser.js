@@ -11,23 +11,30 @@ export const useUser = () => {
     // decoding base64 encoded data keeping all bytes as original encoded.
     const b64DecodeUnicode = (str) => {
         // Going backwards: from bytestream, to percent-encoding, to original string.
-        return decodeURIComponent(atob(str).split('').map((c) => {
+        return str ? decodeURIComponent(atob(str).split('').map((c) => {
             return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-        }).join(''));
+        }).join('')) : null;
     }
-    const getDataFromToken = useCallback(token => {
-        const encodedPayload = token.split('.',)[1];
-        // console.log("useUser - getDataFromToken", encodedPayload)
+    const getDataFromToken = useCallback(() => {
+        const encodedPayload = token ? token.split('.',)[1] : null;
+        console.log("useUser - getDataFromToken", encodedPayload)
+        // if (!encodedPayload) return null;
         return JSON.parse(b64DecodeUnicode(encodedPayload));
-    })
+    }, [token]);
 
     const [user, setUser] = useState(() => {
         if (!token) return null;
         return getDataFromToken(token);
     });
 
-    const updateUser = (newToken) => {
-        setToken(newToken);
+    const updateUser = async (newToken) => {
+        console.log("useUser - updatUser - newToken", newToken);
+        let tmp = await setToken(newToken);
+        setUser(tmp);
+    }
+
+    const getUser = () => {
+        return getDataFromToken(token);
     }
 
     useEffect(() => {
@@ -39,7 +46,7 @@ export const useUser = () => {
         }
     }, [token, getDataFromToken]);
 
-    return [user, updateUser];
+    return [user, updateUser, getUser];
 }
 
 

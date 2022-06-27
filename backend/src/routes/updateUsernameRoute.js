@@ -14,7 +14,7 @@ export const updateUsername = {
         const buf = Buffer.from(req.body.data, 'base64');
         //console.log("1 - buf", typeof buf + " : " + buf);
         const content = JSON.parse(buf.toString('utf8'));
-        //console.log("2 - content", typeof content + " : " + content)
+        console.log("2 - content", content)
 
         // Create the const updates using an anonymous function and
         //  passing in an argument, here content.
@@ -22,10 +22,10 @@ export const updateUsername = {
         // The result will be a constant with the value determined by the 
         //  functionality of the anonymous function.
         const updates = ((data) => (
-            data.username || null
+            data.login.username || null
         ))(content);
 
-        console.log("3 - updates", typeof updates + " : " + updates);
+        // console.log("3 - updates", typeof updates + " : " + updates);
 
         if (!authorization) {
             return res.status(401).json({ message: "Not authorized." });
