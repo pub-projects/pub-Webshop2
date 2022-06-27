@@ -20,12 +20,12 @@ Another initialization file for the user database will be added later when I get
 
 - Login and Creating Accounts
   - Using username/email
-  - Using Google
-  - Using Facebook
-  - Using LinkedIn
+  - Sign up page
+  - Using Google (\*)
+  - Using Facebook (\*)
+  - Using LinkedIn (\*)
 - User area where we can:
   - View orders
-  - View invoices
   - Modify user's profile
 - Admin area where we can update the database with:
   - Add new products
@@ -45,5 +45,7 @@ Another initialization file for the user database will be added later when I get
   - Display price in different forms
 
 Then we will also have the normal navigation bar that will change apperance depending on the user's role assignment and a simple footer.
+
+(\*) will get added later.
 
 \- Chris Johannesson 2022
