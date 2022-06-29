@@ -1,10 +1,14 @@
 import { getDbConnection } from '../db';
 import jwt from 'jsonwebtoken';
 import md5 from 'crypto-js/md5';
+import { userObjectToClientProjection as userProjection } from '../models/objectsAndClasses';
 
+/** Recives the user object in the body data.
+ * Returns the new updated user together with a new token.
+ */
 export const updateUser = {
-    path: '/api/users/update/:userId',
-    method: 'post',
+    path: '/api/users/update/user/:userId',
+    method: 'put',
     handler: async (req, res) => {
         const { authorization } = req.headers;
         const { userId } = req.params;
@@ -66,9 +70,12 @@ export const updateUser = {
                             lang: updates.lang
                         }
                     },
-                    { returnNewDocument: true }
+                    {
+                        projection: userProjection,
+                        returnDocument: 'after' // Return the updated document.
+                    }
                 );
-
+                /** Encode the new user and tokenize it to send to the client */
 
                 console.log("result ", result);
 

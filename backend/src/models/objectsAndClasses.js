@@ -15,3 +15,24 @@ export const removeNonClientLoginProperties = [
     "sha1",
     "sha256"
 ]
+
+export class UserUpdateClass {
+    constructor(newObject, oldObject) {
+        this.oldObj = oldObject;
+        this.newObj = newObject;
+    }
+
+    compareObjects() {
+
+    }
+
+    createUpdateObject() {
+        if (this.oldObj._id !== this.newObj._id) return { 'error': { 'message': "Ids don't match error" } };
+
+        const newObjKeys = Object.keys(this.newObj);
+        for (let i = 0; i < newObjKeys.length; i++) {
+            console.log(`UserUpdateClass - createUpdateObject - key(${i})`, newObjKeys[i]);
+            console.log(`UserUpdateClass - createUpdateObject - key(${i}) - value`, this.newObj[newObjKeys[i]]);
+        }
+    }
+}
