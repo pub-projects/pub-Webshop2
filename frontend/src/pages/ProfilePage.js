@@ -10,7 +10,6 @@ import UserClass from '../util/userClass';
 
 const ProfilePage = () => {
     const [user, setUser] = useState(UserClass.getUser());
-    console.log("ProfilePage - declaring user", user);
     const id = user._id;
     const [gender, setGender] = useState(user.gender);
     const [username, setUsername] = useState(user.login.username);
@@ -27,24 +26,22 @@ const ProfilePage = () => {
     const [country, setCountry] = useState(user.location.country);
     const [postcode, setPostcode] = useState(user.location.postcode);
     const [phone, setPhone] = useState(user.phone);
-    const lastUpdated = user.lastUpdated.split("T")[0];
+    const lastUpdated = user.registered.updated.split("T")[0];
     const [lang,] = useState(user.lang);
     const [avatarUrl, setAvatarUrl] = useState(user.avatar);
     const [token, setToken] = useToken();
     const navigate = useNavigate();
     const userClass = new UserClass();
 
-    console.log("ProfilePage - user", user);
-
-
+    // console.log("ProfilePage - user", user);
 
     const resetUserName = () => {
-        console.log("resetFormData", username);
+        // console.log("resetFormData", username);
         setUsername(user.username);
     }
 
     const resetFormData = () => {
-        console.log("reset page");
+        // console.log("reset page");
         setGender(user.gender);
         setTitle(user.name.title);
         setFname(user.name.first);
@@ -61,7 +58,7 @@ const ProfilePage = () => {
     }
 
     const updateUserName = (ev) => {
-        console.log("ProfilePage - updateUserName", username);
+        // console.log("ProfilePage - updateUserName", username);
         userClass.updateUserName(username);
     }
 

@@ -18,13 +18,13 @@ class UserClass {
     }
 
     async updateUserName(newUserName) {
-        console.log("UserClass - updateUserName", newUserName);
+        // console.log("UserClass - updateUserName", newUserName);
         const user = await UserClass.getUser();
         const tmpUser = JSON.parse(JSON.stringify(user));
         const token = localStorage.getItem('token');
 
         tmpUser.login.username = newUserName;
-        console.log("UserClass - updateUserName - data", tmpUser);
+        // console.log("UserClass - updateUserName - data", tmpUser);
 
         const data = await UserClass.b64EncodeUnicode(JSON.stringify(tmpUser));
 
@@ -33,11 +33,12 @@ class UserClass {
                 headers: { Authorization: `Bearer ${token}` }
             });
             const { token: newToken } = await response.data;
-            console.log("UserClass - updateUserName - newToken", newToken);
-            await localStorage.setItem('token', newToken);
+            // console.log("UserClass - updateUserName - newToken", newToken);
+            localStorage.setItem('token', newToken);
+            // console.log("UserClass - updateUserEvent B4 Dispatched");
             document.dispatchEvent(this.updateUserEvent);
             // document.dispatchEvent(newTokenEvent);
-            console.log("UserClass - updateUserEvent Dispatched", this.updateUserEvent);
+            // console.log("UserClass - updateUserEvent Dispatched", this.updateUserEvent);
         } catch (err) {
             console.log("ProfilePage - handleUpdate - error", err);
         }

@@ -53,7 +53,7 @@ export const updateUsername = {
                     { '_id': o_id },
                     {
                         $set: {
-                            lastUpdated: lastUpdated,
+                            'registered.updated': lastUpdated,
                             'login.username': updates
                             /** The correct way to only update login.usename field */
                         }

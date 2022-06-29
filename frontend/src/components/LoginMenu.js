@@ -2,29 +2,24 @@ import { useState, useEffect, useCallback } from 'react';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { Profiler, proCB } from '../util/Profiler';
 import UserClass from '../util/userClass';
-import { useToken, newTokenEvent } from '../auth/useToken';
 
 const LoginMenu = () => {
-    console.log("LoginMenu 0");
-    const User = new UserClass();
+    // console.log("LoginMenu 0");
     const [user, setUser] = useState(UserClass.getUser());
-    console.log("LoginMenu 1 - user", user);
+    // console.log("LoginMenu 1 - user", user);
     // console.log("LoginMenu 2");
     let username = user && user.login.username;
     //  console.log("LoginMenu 3 - userName", username);
 
-    const [updateLogin, _setUpdateLogin] = useState(true);
-
     const setUpdateLogin = useCallback(() => {
-        console.log("LoginMenu - setUpdateLogin");
+        // console.log("LoginMenu - setUpdateLogin");
         setUser(UserClass.getUser());
-        console.log('LoginMenu - setUpdateLogin - user', user);
     }, [setUser]);
 
     useEffect(() => {
         document.addEventListener('updateUser', () => { setUpdateLogin() });
         setUpdateLogin();
-        console.log("addedEventListner in LoginMenu");
+        // console.log("addedEventListner in LoginMenu");
     }, [setUpdateLogin])
 
     return (

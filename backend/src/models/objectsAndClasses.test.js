@@ -60,21 +60,21 @@ const userOld = {
 
 const userNew = {
     _id: '12345asd',
-    "gender": "male",
+    "gender": "female",
     "name": {
-        "title": "Mr",
+        "title": "Sir",
         "first": "Alex",
         "last": "James"
     },
     "location": {
         "street": {
-            "number": 1234,
+            "number": 8812,
             "name": "High Street"
         },
         "city": "Birmingham",
         "state": "Warwickshire",
         "country": "United Kingdom",
-        "postcode": "MY3 2SF",
+        "postcode": "MY5 6IP",
         "timezone": "+11:00"
     },
     "email": [
@@ -98,7 +98,7 @@ const userNew = {
     "phone": [
         {
             "name": "Home",
-            "number": "019467 08687"
+            "number": "019467 3837"
         },
         {
             "name": "Mobile",
@@ -113,10 +113,40 @@ const userNew = {
     "lang": "en-GB"
 }
 
-describe("Testing the UserUpdateClass & functions", () => {
-    test("Function - createUpdateObject", async () => {
+describe("Testing the UserUpdateClass function createUpdateObject()", () => {
+    test("testing first level", async () => {
         const uuc = new UserUpdateClass(userNew, userOld);
-        uuc.createUpdateObject()
-        expect(true).toBe(true);
+        const result = uuc.createUpdateObject();
+        expect(result[0]).toBe("gender:female");
+    });
+
+    test("testing second level", async () => {
+        const uuc = new UserUpdateClass(userNew, userOld);
+        const result = uuc.createUpdateObject();
+        expect(result[1]).toBe("name.title:Sir");
+    });
+
+    test("testing third level - location street number", async () => {
+        const uuc = new UserUpdateClass(userNew, userOld);
+        const result = uuc.createUpdateObject();
+        expect(result[2]).toBe("location.street.number:8812");
+    });
+    test("testing third level - location street name", async () => {
+        const uuc = new UserUpdateClass(userNew, userOld);
+        const result = uuc.createUpdateObject();
+        expect(result[3]).toBe("location.street.name:High Street");
+    });
+    test("testing second level - location postcode", async () => {
+        const uuc = new UserUpdateClass(userNew, userOld);
+        const result = uuc.createUpdateObject();
+        expect(result[4]).toBe("location.postcode:MY5 6IP");
+    });
+
+    test("testing second level being an array", async () => {
+        const uuc = new UserUpdateClass(userNew, userOld);
+        const result = uuc.createUpdateObject();
+        expect(result[5]).toBe("phone.0.number:019467 3837");
     });
 });
+
+//,"testArray": [{ "first": "inArray" }, { "second": "inArray" }, { "third": "inArray" }]
