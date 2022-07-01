@@ -2,6 +2,8 @@
 /backend/node_modules/
 /backend/coverage/
 /backend/.flowconfig
+/backend/coverage/
+/backend/src/models/summerQuiz.js
 /frontend/node_modules/
 /frontend/.flowconfig
 .DS_Store
