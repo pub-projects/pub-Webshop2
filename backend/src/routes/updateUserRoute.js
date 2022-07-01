@@ -81,9 +81,9 @@ export const updateUser = {
 
                 for (let i = 0; i < updateArray.length; i++) {
                     tmp = updateArray[i].split(":");
-                    console.log("updateUser - tmp[]: ", tmp);
+                    // console.log("updateUser - tmp[]: ", tmp);
                     updateStr += `"${tmp[0]}":`;
-                    console.log("updateUser - updateStr 1: ", updateStr);
+                    // console.log("updateUser - updateStr 1: ", updateStr);
                     if (Number.isNaN(Number.parseFloat(tmp[1]))) updateStr += `"${tmp[1]}"`
                     else updateStr += tmp[1];
                     console.log("updateUser - updateStr 2: ", updateStr);
@@ -92,9 +92,9 @@ export const updateUser = {
                 const lastUpdated = '"registered.updated"' + ':' + `"${date.toISOString()}"`;
                 updateStr += lastUpdated + "}";
                 updateStr = "{" + updateStr;
-                console.log("updateUserRoute - updateStr: ", updateStr);
+                // console.log("updateUserRoute - updateStr: ", updateStr);
                 const updateObj = { $set: JSON.parse(updateStr) };
-                console.log("updateUserRoute - updateObj: ", updateObj);
+                // console.log("updateUserRoute - updateObj: ", updateObj);
 
                 const result = await db.collection('Users').findOneAndUpdate(
                     { '_id': o_id },
