@@ -1,6 +1,7 @@
 /backend/.env
 /backend/node_modules/
 /backend/.flowconfig
+/backend/coverage/
 /frontend/node_modules/
 /frontend/.flowconfig
 .DS_Store
