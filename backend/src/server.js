@@ -19,3 +19,5 @@ initializeDbConnection()
             console.log(`Webshop server is listening on port ${PORT}`);
         });
     });
+
+export default app;
