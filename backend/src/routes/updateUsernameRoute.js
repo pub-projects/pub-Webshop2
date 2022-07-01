@@ -14,7 +14,7 @@ export const updateUsername = {
         const buf = Buffer.from(req.body.data, 'base64');
         //console.log("1 - buf", typeof buf + " : " + buf);
         const content = JSON.parse(buf.toString('utf8'));
-        console.log("2 - content", content)
+        // console.log("2 - content", content)
 
         // Create the const updates using an anonymous function and
         //  passing in an argument, here content.

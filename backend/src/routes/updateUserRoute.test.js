@@ -1,7 +1,9 @@
-import { UserUpdateClass } from './objectsAndClasses';
+import { updateUser } from './updateUserRoute';
+import { app } from '../server';
+import { request } from 'supertest';
 
 const userOld = {
-    _id: '12345asd',
+    _id: '626f89ee3f33b4f01d6cabb9',
     "gender": "male",
     "name": {
         "title": "Mr",
@@ -59,7 +61,7 @@ const userOld = {
 }
 
 const userNew = {
-    _id: '12345asd',
+    _id: '626f89ee3f33b4f01d6cabb9',
     "gender": "female",
     "name": {
         "title": "Sir",
@@ -113,40 +115,37 @@ const userNew = {
     "lang": "en-GB"
 }
 
-describe("Testing the UserUpdateClass function createUpdateArray()", () => {
-    test("testing first level", async () => {
-        const uuc = new UserUpdateClass(userNew, userOld);
-        const result = uuc.createUpdateArray();
-        expect(result[0]).toBe("gender:female");
-    });
+const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjZmODllZTNmMzNiNGYwMWQ2Y2FiYjkiLCJnZW5kZXIiOiJtYWxlIiwibmFtZSI6eyJ0aXRsZSI6Ik1yIiwiZmlyc3QiOiJBbGV4IiwibGFzdCI6IkphbWVzIn0sImxvY2F0aW9uIjp7InN0cmVldCI6eyJudW1iZXIiOjcwMTYsIm5hbWUiOiJCcm9hZHdheSJ9LCJjaXR5IjoiQmlybWluZ2hhbSIsInN0YXRlIjoiV2Fyd2lja3NoaXJlIiwiY291bnRyeSI6IlVuaXRlZCBLaW5nZG9tIiwicG9zdGNvZGUiOiJNWTUgNERaIiwidGltZXpvbmUiOiIrMTE6MDAifSwiZW1haWwiOlt7Im5hbWUiOiJQcml2YXRlIiwiZW1haWxhZGRyZXNzIjoiYWxleC5qYW1lc0BleGFtcGxlLmNvbSIsImlzVmVyaWZpZWQiOnRydWV9XSwibG9naW4iOnsidXNlcm5hbWUiOiJibHVld29sZjk5OSJ9LCJkb2IiOnsiZGF0ZSI6IjE5NTktMTAtMDQiLCJhZ2UiOjYzfSwicmVnaXN0ZXJlZCI6eyJkYXRlIjoiMjAxOC0wMS0wNlQwODoyODoxMC4xMTJaIiwidXBkYXRlZCI6IjIwMjItMDYtMzBUMDc6MzY6MTAuODc0WiJ9LCJwaG9uZSI6W3sibmFtZSI6IkhvbWUiLCJudW1iZXIiOiIwMTk0NjcgMDg2ODcifSx7Im5hbWUiOiJNb2JpbGUiLCJudW1iZXIiOiIwNzg5LTk2Ni02MDIifV0sImF2YXRhciI6eyJsYXJnZSI6Imh0dHBzOi8vcmFuZG9tdXNlci5tZS9hcGkvcG9ydHJhaXRzL21lbi81Mi5qcGciLCJtZWRpdW0iOiJodHRwczovL3JhbmRvbXVzZXIubWUvYXBpL3BvcnRyYWl0cy9tZWQvbWVuLzUyLmpwZyIsInRodW1ibmFpbCI6Imh0dHBzOi8vcmFuZG9tdXNlci5tZS9hcGkvcG9ydHJhaXRzL3RodW1iL21lbi81Mi5qcGcifSwibGFuZyI6ImVuLUdCIiwibGFzdFVwZGF0ZWQiOiIyMDIyLTA2LTI3VDA5OjQxOjI4Ljg0MVoiLCJpYXQiOjE2NTY1NzQ1NzAsImV4cCI6MTY1Njc0NzM3MH0.5JtyOXhakVTbR4i9Y7cWza-YCaPeR6vb1RIlVpk4NV0";
 
-    test("testing second level", async () => {
-        const uuc = new UserUpdateClass(userNew, userOld);
-        const result = uuc.createUpdateArray();
-        expect(result[1]).toBe("name.title:Sir");
-    });
-
-    test("testing third level - location street number", async () => {
-        const uuc = new UserUpdateClass(userNew, userOld);
-        const result = uuc.createUpdateArray();
-        expect(result[2]).toBe("location.street.number:8812");
-    });
-    test("testing third level - location street name", async () => {
-        const uuc = new UserUpdateClass(userNew, userOld);
-        const result = uuc.createUpdateArray();
-        expect(result[3]).toBe("location.street.name:High Street");
-    });
-    test("testing second level - location postcode", async () => {
-        const uuc = new UserUpdateClass(userNew, userOld);
-        const result = uuc.createUpdateArray();
-        expect(result[4]).toBe("location.postcode:MY5 6IP");
-    });
-
-    test("testing second level being an array", async () => {
-        const uuc = new UserUpdateClass(userNew, userOld);
-        const result = uuc.createUpdateArray();
-        expect(result[5]).toBe("phone.0.number:019467 3837");
+describe("Testing the express server's updateUser functionality.", () => {
+    test("/api/users/update/user/:userId", async (done) => {
+        const data = "";
+        try {
+            const res = await request(app)
+                .put("/api/users/update/user/626f89ee3f33b4f01d6cabb9")
+                .set('Authorization', 'Bearer ' + token)
+                .expect(200)
+                .expect((res) => {
+                    console.log(res)
+                })
+                .end((err, res) => {
+                    if (err) return done(err);
+                    return done();
+                });
+        } catch (err) {
+            console.error(err);
+        }
     });
 });
 
 //,"testArray": [{ "first": "inArray" }, { "second": "inArray" }, { "third": "inArray" }]
+/**
+ * describe("Users route", () => {
+  test("Get users route", async () => {
+    const res = await request(app).get("/users");
+    //console.log("Users route", res.status + " : " + res.body);
+    expect(res.status).toBe(200);
+    expect(res.body).toEqual(["Chris", "John", "Joe"]);
+  });
+});
+ */

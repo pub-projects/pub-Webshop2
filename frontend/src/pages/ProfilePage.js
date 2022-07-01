@@ -1,8 +1,6 @@
-import { useUser } from '../auth/useUser';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { PhoneNumberList } from '../components/PhoneNumberList';
 import { EmailList } from '../components/EmailList';
-import axios from 'axios';
 import { useToken } from '../auth/useToken';
 import { useNavigate } from 'react-router';
 import { Profiler, proCB } from '../util/Profiler';
@@ -10,15 +8,12 @@ import UserClass from '../util/userClass';
 
 const ProfilePage = () => {
     const [user, setUser] = useState(UserClass.getUser());
-    const id = user._id;
-    const [gender, setGender] = useState(user.gender);
     const [username, setUsername] = useState(user.login.username);
     const [title, setTitle] = useState(user.name.title);
     const [fname, setFname] = useState(user.name.first);
     const [lname, setLname] = useState(user.name.last);
     const [email, setEmail] = useState(user.email);
     const isVerified = user.email.isVerified;
-    const [birthday, setBirthday] = useState(user.dob.date);
     const [street, setStreet] = useState(user.location.street.name);
     const [streetNumber, setStreetNumber] = useState(user.location.street.number);
     const [city, setCity] = useState(user.location.city);
@@ -42,12 +37,10 @@ const ProfilePage = () => {
 
     const resetFormData = () => {
         // console.log("reset page");
-        setGender(user.gender);
         setTitle(user.name.title);
         setFname(user.name.first);
         setLname(user.name.last);
         setEmail(user.email);
-        setBirthday(user.dob.date);
         setStreet(user.location.street.name);
         setStreetNumber(user.location.street.number);
         setCity(user.location.city);
@@ -63,40 +56,32 @@ const ProfilePage = () => {
     }
 
     const handleUpdate = async (ev) => {
-        ev.preventDefault();
-        // Create a tmpUser and set all fields to current values then
-        // send to server and update the user.
+        /**
+         * Create a tmpUser and set all fields to current values then
+         * send to server and update the user.
+         */
+
         // Deep copy.
         const tmpUser = JSON.parse(JSON.stringify(user));
-        const name = { "title": title, "first": fname, "last": lname };
-        const tmpStreet = { "number": streetNumber, "name": street };
-        const location = { "street": tmpStreet, "city": city, "state": state, "country": country, "postcode": postcode, "timezone": user.location.timezone };
 
-        tmpUser.gender = gender;
-        tmpUser.username = username;
-        tmpUser.name = name;
-        tmpUser.email = email;
-        tmpUser.dob.date = birthday;
-        tmpUser.location = location;
-        tmpUser.phone = phone;
-        tmpUser.avatar = avatarUrl;
-
-        console.log("ProfilePage - handleUpdate - tmpUser", tmpUser);
-        const data = UserClass.b64EncodeUnicode(JSON.stringify(tmpUser));
-        console.log("checking data", data);
-        try {
-            const response = await axios.post(`/api/users/update/${tmpUser.id}`, { data }, {
-                headers: { Authorization: `Bearer ${token}` }
-            });
-            const { token: newToken } = await response.data;
-            console.log("updated token", newToken);
-            setToken(newToken);
-            navigate('/userprofile');
-        } catch (err) {
-            console.log("ProfilePage - handleUpdate - error", err);
+        // Get all current data and dump in tmpUser.
+        tmpUser.name.title = title;
+        tmpUser.name.first = fname;
+        tmpUser.name.last = lname;
+        tmpUser.location.street.number = streetNumber;
+        tmpUser.location.street.name = street;
+        tmpUser.location.city = city;
+        tmpUser.location.state = state;
+        tmpUser.location.country = country;
+        tmpUser.location.postcode = postcode;
+        for (let i = 0; i < tmpUser.email.length; i++) {
+            tmpUser.email[i].emailaddress = email[i].emailaddress;
+        }
+        for (let i = 0; i < tmpUser.phone.length; i++) {
+            tmpUser.phone[i].number = phone.number;
         }
 
-        return false;
+        userClass.updateUser(tmpUser);
     }
 
     const handleImageClick = () => {
@@ -135,7 +120,7 @@ const ProfilePage = () => {
                             <input type="button" onClick={() => resetUserName()} value="Reset" />
                         </form>
                     </div>
-                    <form onSubmit={(ev) => handleUpdate(ev)}>
+                    <form>
                         <div className="section name border-top">
                             <label>
                                 Title:<br />
@@ -192,7 +177,7 @@ const ProfilePage = () => {
                                 </label>
                             </div>
                         </div>
-                        <input type="submit" value="Update" />
+                        <input type="button" value="Update" onClick={(ev) => handleUpdate(ev)} />
                         <input type="button" onClick={() => resetFormData()} value="Reset" />
                     </form>
                 </section>

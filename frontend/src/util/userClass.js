@@ -22,6 +22,7 @@ class UserClass {
         const user = await UserClass.getUser();
         const tmpUser = JSON.parse(JSON.stringify(user));
         const token = localStorage.getItem('token');
+        console.log("updateUserName - token:", token);
 
         tmpUser.login.username = newUserName;
         // console.log("UserClass - updateUserName - data", tmpUser);
@@ -40,10 +41,31 @@ class UserClass {
             // document.dispatchEvent(newTokenEvent);
             // console.log("UserClass - updateUserEvent Dispatched", this.updateUserEvent);
         } catch (err) {
-            console.log("ProfilePage - handleUpdate - error", err);
+            console.error("ProfilePage - handleUpdate - error", err);
         }
 
         return false;
+    }
+
+    async updateUser(updateUser) {
+        console.log("UserClass - updateUser - updateUser", updateUser);
+        const data = UserClass.b64EncodeUnicode(JSON.stringify(updateUser));
+        const token = localStorage.getItem('token');
+        console.log("UserClass - updateUser - data", data);
+
+        try {
+            const response = await axios.put(`/api/users/update/user/${updateUser._id}`, { data }, {
+                headers: { Authorization: `Bearer ${token}` }
+            });
+            const tmp = await response.data;
+            console.log("UserClass - updateUser - response.data: ", tmp);
+            // const { token: newToken } = await response.data;
+            // localStorage.setItem('token', newToken);
+            // console.log("updated token", newToken);
+        } catch (err) {
+            console.error("ProfilePage - handleUpdate - error", err);
+        }
+
     }
 
     /** Static functions */

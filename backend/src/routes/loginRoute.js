@@ -36,6 +36,7 @@ export const login = {
             removeNonClientLoginProperties.forEach(item => {
                 delete user.login[item];
             });
+
             console.log("trimmed - user", user);
             if (isCorrectPassword) {
                 jwt.sign(user, process.env.JWT_SECRET, { expiresIn: '2d' }, (err, token) => {
