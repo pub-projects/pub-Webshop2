@@ -112,7 +112,7 @@ const ProfilePage = () => {
                     <div onClick={handleImageClick()}>
                         <img src={avatarUrl.medium} width="100px" alt="Profile" />
                     </div>
-                    <input type="button" onClick={uploadImage()} value="Update image" />
+                    {/* <input type="button" onClick={uploadImage()} value="Update image" /> */}
                 </section>
                 <section className="profileSection">
                     <div className="userName section">
