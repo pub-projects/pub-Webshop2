@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { PhoneNumberList } from '../components/PhoneNumberList';
 import { EmailList } from '../components/EmailList';
 import { useToken } from '../auth/useToken';
@@ -91,6 +91,18 @@ const ProfilePage = () => {
     const uploadImage = () => {
 
     }
+
+    const setUpdateProfile = useCallback(() => {
+        console.log("ProfilePage - setUpdateProfile");
+        setUser(UserClass.getUser());
+    }, [setUser])
+
+    useEffect(() => {
+        document.addEventListener('updateUser', () => { setUpdateProfile() });
+        console.log("added EventListner to ProfilePage");
+        setUpdateProfile();
+
+    }, [setUpdateProfile])
 
     return (
         <div className="profileWrapper"><h2>User Profile</h2><h3>{username}</h3>

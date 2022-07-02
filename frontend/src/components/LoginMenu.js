@@ -17,7 +17,7 @@ const LoginMenu = () => {
     }, [setUser]);
 
     useEffect(() => {
-        document.addEventListener('updateUser', () => { setUpdateLogin() });
+        document.addEventListener('updateUserName', () => { setUpdateLogin() });
         setUpdateLogin();
         // console.log("addedEventListner in LoginMenu");
     }, [setUpdateLogin])

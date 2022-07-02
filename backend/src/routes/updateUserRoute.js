@@ -92,9 +92,16 @@ export const updateUser = {
                 const lastUpdated = '"registered.updated"' + ':' + `"${date.toISOString()}"`;
                 updateStr += lastUpdated + "}";
                 updateStr = "{" + updateStr;
-                console.log("updateUserRoute - updateStr: ", updateStr);
+                // console.log("updateUserRoute - updateStr: ", updateStr);
+                /**
+                 * In order to be able to use our updateStr string we need to create an 
+                 *  object that will hold all information. 
+                 * Since we now have created a valid JSON of our updateStr we use 
+                 *  JSON.parse() to make an object of it and put inside the @set: call
+                 *  and it works. 
+                 */
                 const updateObj = { $set: JSON.parse(updateStr) };
-                console.log("updateUserRoute - updateObj: ", updateObj);
+                // console.log("updateUserRoute - updateObj: ", updateObj);
 
                 const result = await db.collection('Users').findOneAndUpdate(
                     { '_id': o_id },
@@ -106,29 +113,24 @@ export const updateUser = {
                 );
                 console.log("updateUserRoute - result ", result);
 
-                // jwt.sign(
-                //     result.value,
-                //     process.env.JWT_SECRET,
-                //     {
-                //         expiresIn: '2d',
-                //     },
-                //     (err, token) => {
-                //         if (err) {
-                //             return res.status(500).send("jwt" + err);
-                //         }
-                //         res.status(200).json({ token });
-                //     }
-                // )
+                jwt.sign(
+                    result.value,
+                    process.env.JWT_SECRET,
+                    {
+                        expiresIn: '2d',
+                    },
+                    (err, token) => {
+                        if (err) {
+                            return res.status(500).send("jwt" + err);
+                        }
+                        res.status(200).json({ token });
+                    }
+                )
                 // console.log("updateUser - updateArray: ", updateArray);
                 // console.log("updateUser - updateStr: ", updateStr);
                 // const updateClass = new userUpdateClass()
                 // const updateArray = updateClass.createUpdateArray();
-                console.log("end of function");
-
-                /**
-                 * Temporary response.
-                 */
-                return res.status(200).json(updateArray);
+                // console.log("end of function");
 
             } catch (err) {
                 console.error(err);

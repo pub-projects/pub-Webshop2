@@ -4,6 +4,7 @@ class UserClass {
     constructor() {
         this.userData = null;
         this.updateUserEvent = new Event("updateUser", { bubbles: true, cancelable: true });
+        this.updateUserNameEvent = new Event("updateUserName", { bubbles: true, cancelable: true });
     }
 
     /** Class functions */
@@ -15,6 +16,10 @@ class UserClass {
 
     getUpdateUserEvent() {
         return this.updateUserEvent;
+    }
+
+    getUpdateUserNameEvent() {
+        return this.updateUserNameEvent;
     }
 
     async updateUserName(newUserName) {
@@ -37,7 +42,7 @@ class UserClass {
             // console.log("UserClass - updateUserName - newToken", newToken);
             localStorage.setItem('token', newToken);
             // console.log("UserClass - updateUserEvent B4 Dispatched");
-            document.dispatchEvent(this.updateUserEvent);
+            document.dispatchEvent(this.updateUserNameEvent);
             // document.dispatchEvent(newTokenEvent);
             // console.log("UserClass - updateUserEvent Dispatched", this.updateUserEvent);
         } catch (err) {
@@ -48,20 +53,20 @@ class UserClass {
     }
 
     async updateUser(updateUser) {
-        console.log("UserClass - updateUser - updateUser", updateUser);
+        // console.log("UserClass - updateUser - updateUser", updateUser);
         const data = UserClass.b64EncodeUnicode(JSON.stringify(updateUser));
         const token = localStorage.getItem('token');
-        console.log("UserClass - updateUser - data", data);
+        // console.log("UserClass - updateUser - data", data);
 
         try {
             const response = await axios.put(`/api/users/update/user/${updateUser._id}`, { data }, {
                 headers: { Authorization: `Bearer ${token}` }
             });
-            const tmp = await response.data;
-            console.log("UserClass - updateUser - response.data: ", tmp);
-            // const { token: newToken } = await response.data;
-            // localStorage.setItem('token', newToken);
-            // console.log("updated token", newToken);
+            const { token: newToken } = await response.data;
+            console.log("UserClass - updateUserName - newToken", newToken);
+            localStorage.setItem('token', newToken);
+            // console.log("UserClass - updateUserEvent B4 Dispatched");
+            document.dispatchEvent(this.updateUserEvent);
         } catch (err) {
             console.error("ProfilePage - handleUpdate - error", err);
         }
@@ -113,6 +118,11 @@ class UserClass {
     static addNewUserEvent(element) {
         element.removeEventListener("updateUser");
         element.addEventListener("updateUser");
+    }
+
+    static addNewUserNameEvent(element) {
+        element.removeEvenListener("updateUserName");
+        element.addEventListener("updateUserName");
     }
 }
 
